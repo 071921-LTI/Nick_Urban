@@ -1,0 +1,47 @@
+Movie and music record store.
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+MODELS:
+-Customer (or user?) model
+-Employee model
+-Manager model
+-product model
+	--can be for sale or bought
+	--
+
+
+CONTROLLERS:
+-MenuScreen 
+-login screen
+-shopping screen
+-checkout screen
+-customer profile screen
+	--which items are owned
+	--which items are pending offer
+
+
+
+DAO's:
+-customer database
+-employee database
+-manager database
+-product database
+
+
+EXCEPTIONS:
+-user not found
+-auth exception
+-product not found
+-product out of stock
+-
+
+
+SERVICES:
+-auth/login service
+-add/remove customer
+-add/remove employee
+-add/remove manager (?)
+-add/remove products to store
+-add/remove products to cart
+-update product status (bought/for sale)
