@@ -31,7 +31,7 @@ DAO's:
 
 EXCEPTIONS:
 -user not found
--auth exception
+-login exception
 -product not found
 -product out of stock
 -
