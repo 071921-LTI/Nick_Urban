@@ -1,10 +1,12 @@
 package com.revature.models;
 
+import java.util.ArrayList;
+
 public interface IUser {
 
-	public void logIn();
+	public boolean logIn(String userName, String password);
 	
 	public boolean isEmployeeCheck();
 	
-	public void viewItems();
+	//public ArrayList<Item> viewItems();
 }

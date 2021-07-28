@@ -1,14 +1,16 @@
 package com.revature.models;
 
+import java.util.ArrayList;
+
 public interface IEmployee extends IUser {
 	
-	public void addItemToShop();
+	public Item addItemToShop(Item item);
 	
-	public void removeItemFromShop();
+	public Item removeItemFromShop(Item item);
 	
-	public void considerOffer();
+	public void acceptOffer(Customer customer, Item item);
 	
-	public void viewAllPayments();
+	public ArrayList<Double> viewAllPayments();
 	
 	// bonus items:
 	//

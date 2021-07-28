@@ -1,16 +1,13 @@
 package com.revature.models;
 
+import java.util.ArrayList;
+
 public interface ICustomer extends IUser {
 
-	public void makeOffer();
+	public void makeOffer(Item item, double offer);
 	
-	public void registerAccount(); // maybe move somewhere else?
+	public double makePayment(double payment);
 	
-	public void viewItems();
+	public ArrayList<Double> viewRemainingPayments();
 	
-	public void viewRemainingPayments();
-	
-	// bonus items:
-	//
-	//public void makePayment();
 }
