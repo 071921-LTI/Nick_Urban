@@ -5,11 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.revature.models.Customer;
 import com.revature.models.Employee;
 import com.revature.models.Item;
+import com.revature.models.Offer;
 import com.revature.services.IItemServices;
 import com.revature.services.ItemServices;
 
@@ -36,10 +40,10 @@ public class Driver {
 		Customer cus2 = new Customer("josh", "123");
 		Customer cus3 = new Customer("stacey", "123");
 		
-		Item item1 = new Item(123, 20, 0, 0, 0, "basketball");
-		Item item2 = new Item(456, 5, 0, 0, 0, "guitar");
-		Item item3 = new Item(789, 850, 0, 0, 0, "rare vinyl record");
-		Item item321 = new Item(369, 32, 0, 0, 0, "bag of chips");
+		Item item1 = new Item(1, "basketball", 20, 0, 0, 0, 0, false);
+		Item item2 = new Item(2, "guitar", 85, 0, 0, 0, 0, false);
+		Item item3 = new Item(3, "rare vinyl record", 675, 0, 0, 0, 0, false);
+		Item item321 = new Item(4, "bag of chips", 14, 0, 0, 0, 0, false);
 		
 		
 		ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -51,91 +55,103 @@ public class Driver {
 		items.add(item1);
 		items.add(item2);
 		items.add(item3);
-
-		item1.addOffer(cus2, 40);
-		item1.addOffer(cus3, 50);
-		item2.addOffer(cus3, 15);
-		
-		System.out.println();
-		System.out.println();
 		
 		
+		CopyOnWriteArrayList<Offer> offers = new CopyOnWriteArrayList<Offer>(); 
+//		offers.add(new Offer(cus3, item2, 90));
+//		offers.add(new Offer(cus1, item3, 10));
+//		offers.add(new Offer(cus1, item1, 40));
+//		offers.add(new Offer(cus2, item1, 50));
 		
-		// shows that a customer has a list of owned items (that can be viewed)
-		//
-//		System.out.println(cus3.getOwnedItems());
-//		emp.acceptOffer(customers, cus3, item1);
-//		System.out.println(cus3.getOwnedItems());
-//		
-//		System.out.println();
-//		System.out.println();
+		
+		
 		
 		
 		// shows that the system removes all offers on an item after it is sold
 		//
-		System.out.println(cus3.getOfferItems());
-		System.out.println(cus2.getOfferItems());
-		emp.acceptOffer(customers, cus3, item1);
-		System.out.println(cus3.getOfferItems());
-		System.out.println(cus2.getOfferItems());
+//		offers.add(new Offer(cus3, item2, 90));
+//		offers.add(new Offer(cus1, item3, 10));
+//		offers.add(new Offer(cus1, item1, 40));
+//		offers.add(new Offer(cus2, item1, 50));
+//		System.out.println(offers);
+//		emp.acceptOffer(cus2, item1, offers);
+//		System.out.println();
+//		System.out.println(offers);
 		
-		System.out.println();
-		System.out.println();
 		
 		
 		// shows that employee can reject a customer offer
 		//
-		System.out.println(cus2.getOfferItems());
-		emp.rejectOffer(customers, cus2, item1);
-		System.out.println(cus2.getOfferItems());
-		
-
-		
-		System.out.println();
-		System.out.println();
-		
-		
+//		offers.add(new Offer(cus1, item1, 40));
+//		offers.add(new Offer(cus2, item1, 50));
+//		System.out.println(offers);
+//		emp.rejectOffer(cus1, item1, offers);
+//		System.out.println(offers);
+				
+				
 		// displays a customer making an offer and employee accepting offer
-		// and item being removed from customers offer hash-set
+		// and item being removed from offers list
 		//
-		System.out.println(cus3.getOfferItems());
-		System.out.println(item1.toString());
-		emp.acceptOffer(customers, cus3, item1);
-		System.out.println("basketball sold");
-		System.out.println(cus3.getOfferItems());
-		System.out.println(item1.toString());
-		
-		System.out.println();
-		System.out.println();
+//		System.out.println(offers);
+//		offers.add(new Offer(cus1, item3, 10));
+//		System.out.println(offers);
+//		emp.acceptOffer(cus1, item3, offers);
+//		System.out.println(offers);
 		
 		
+				
 		// customer can make offer, then remove their offer
 		//
-		cus3.makeOffer(item321, 0);
-		System.out.println(cus3.getOfferItems());
-		cus3.removeOffer(item321);
-		System.out.println(cus3.getOfferItems());
-//		
-		System.out.println();
-		System.out.println();
+//		System.out.println(offers);
+//		offers.add(new Offer(cus1, item3, 10));
+//		System.out.println(offers);	
+//		cus1.rejectOffer(item3, offers);
+//		System.out.println(offers);
 		
 		
-		// not sure if this still works, probably not..
-		//
-		cus3.removeOffer(item1);
-		System.out.println(cus3.getOfferItems());
-		
-		System.out.println();
-		System.out.println();
+
+			
 		
 		
 		// shows that employee can add and remove items from "shop"
 		//
-		System.out.println(items.toString());
+		System.out.println(items);
 		emp.addItemToShop(items, item321);
-		System.out.println(items.toString());
+		System.out.println(items);
 		emp.removeItemFromShop(items, item321);
-		System.out.println(items.toString());
+		System.out.println(items);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		item1.addOffer(cus2, 40);
+//		item1.addOffer(cus3, 50);
+//		item2.addOffer(cus3, 15);
+		
+		
+	
+	}
+	
+	public static void removeFromArrayList(List<Offer> offers, Item item) {
+		//System.out.println(offers);
+		Iterator i = offers.iterator();
+		Offer offer = new Offer();
+		while(i.hasNext()) {
+			offer = (Offer) i.next();
+			if (offer.getItem().equals(item)) {
+				i.remove();
+			}
+		}
+		//System.out.println(offers);
+		
+		
 	}
 
 }

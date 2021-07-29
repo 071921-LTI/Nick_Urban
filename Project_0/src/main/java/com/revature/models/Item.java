@@ -2,11 +2,14 @@ package com.revature.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.TreeMap;
 
-public class Item  { //implements Comparable<Item> { 
+public class Item  { 
 	
-	private int serialNum;
+	private int id;
+	
+	private String description = "";
 	
 	private double askingPrice;
 	
@@ -18,41 +21,34 @@ public class Item  { //implements Comparable<Item> {
 	
 	private double paymentAmount;
 	
-	private String description = "";
-	
 	private boolean isOwned = false;
-	
-	// ...maybe
-	//public HashMap<Item, Double> customerOffers = new HashMap<Item, Double>();
-	
-	//public ArrayList<Customer> offers = new ArrayList<Customer>();
-
 	
 	public Item() {
 		
 	}
-	
 
-	public Item(int serialNum, double askingPrice, double soldPrice, double remainingBalance, double paymentAmount,
-			String description) {
+	public Item(int id, String description, double askingPrice, double soldPrice, double weeklyPayments,
+			double remainingBalance, double paymentAmount, boolean isOwned) {
 		super();
-		this.serialNum = serialNum;
+		this.id = id;
+		this.description = description;
 		this.askingPrice = askingPrice;
 		this.soldPrice = soldPrice;
+		this.weeklyPayments = weeklyPayments;
 		this.remainingBalance = remainingBalance;
 		this.paymentAmount = paymentAmount;
-		this.description = description;
+		this.isOwned = isOwned;
 	}
 
+	public int getId() {
+		return id;
+	}
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	public int getSerialNum() {
-		return serialNum;
-	}
-	
-	public void setSerialNum(int serialNum) {
-		this.serialNum = serialNum;
-	}
-	
 	public double getRemainingBalance() {
 		return remainingBalance;
 	}
@@ -68,10 +64,6 @@ public class Item  { //implements Comparable<Item> {
 	public void setPaymentAmount(double paymentAmount) {
 		this.paymentAmount = paymentAmount;
 	}
-	
-//	public void setOffers(ArrayList<Customer> offers) {
-//		this.offers = offers;
-//	}
 		
 	public double getSoldPrice() {
 		return soldPrice;
@@ -81,10 +73,6 @@ public class Item  { //implements Comparable<Item> {
 		this.soldPrice = soldPrice;
 	}
 	
-//	public ArrayList<Customer> getOffers() {
-//		return offers;
-//	}
-
 	public boolean isOwned() {
 		return isOwned;
 	}
@@ -121,44 +109,22 @@ public class Item  { //implements Comparable<Item> {
 		this.weeklyPayments = weeklyPayments;
 	}
 
-
-	
-	// add interface for stuff below?:
-	public void addOffer(Customer cust, double offer) {
-		
-		if (isOwned == false) { 
-			cust.makeOffer(this, offer);
-			//offers.add(cust); // fix this !!
-		}
-	}
 	
 	@Override
 	public String toString() {
-		return "Item [serialNum=" + serialNum + ", askingPrice=" + askingPrice + ", soldPrice=" + soldPrice
-				+ ", remainingBalance=" + remainingBalance + ", paymentAmount=" + paymentAmount + ", description="
-				+ description + ", isOwned=" + isOwned + "]";
+		return "Item [id=" + id + ", description=" + description + ", askingPrice=" + askingPrice + ", soldPrice="
+				+ soldPrice + ", weeklyPayments=" + weeklyPayments + ", remainingBalance=" + remainingBalance
+				+ ", paymentAmount=" + paymentAmount + ", isOwned=" + isOwned + "]";
 	}
-	
+
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(askingPrice);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + (isOwned ? 1231 : 1237);
-		temp = Double.doubleToLongBits(paymentAmount);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(remainingBalance);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + serialNum;
-		temp = Double.doubleToLongBits(soldPrice);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
+		return Objects.hash(askingPrice, description, id, isOwned, paymentAmount, remainingBalance, soldPrice,
+				weeklyPayments);
 	}
-	
-	
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -168,38 +134,12 @@ public class Item  { //implements Comparable<Item> {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		if (Double.doubleToLongBits(askingPrice) != Double.doubleToLongBits(other.askingPrice))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (isOwned != other.isOwned)
-			return false;
-		if (Double.doubleToLongBits(paymentAmount) != Double.doubleToLongBits(other.paymentAmount))
-			return false;
-		if (Double.doubleToLongBits(remainingBalance) != Double.doubleToLongBits(other.remainingBalance))
-			return false;
-		if (serialNum != other.serialNum)
-			return false;
-		if (Double.doubleToLongBits(soldPrice) != Double.doubleToLongBits(other.soldPrice))
-			return false;
-		return true;
+		return Double.doubleToLongBits(askingPrice) == Double.doubleToLongBits(other.askingPrice)
+				&& Objects.equals(description, other.description) && id == other.id && isOwned == other.isOwned
+				&& Double.doubleToLongBits(paymentAmount) == Double.doubleToLongBits(other.paymentAmount)
+				&& Double.doubleToLongBits(remainingBalance) == Double.doubleToLongBits(other.remainingBalance)
+				&& Double.doubleToLongBits(soldPrice) == Double.doubleToLongBits(other.soldPrice)
+				&& Double.doubleToLongBits(weeklyPayments) == Double.doubleToLongBits(other.weeklyPayments);
 	}
-
-
-
-
-
-//	public int compareTo(Item i) {
-//		// TODO Auto-generated method stub
-//		Integer s1 = this.getSerialNum();
-//		Integer s2 = i.getSerialNum();
-//		
-//		return s1.compareTo(s2);
-//		//srlNm = this.getSerialNum().compareTo(i.getSerialNum());  
-//	}
-	
 	
 }

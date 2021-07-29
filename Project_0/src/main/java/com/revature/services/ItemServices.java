@@ -2,22 +2,35 @@ package com.revature.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.revature.models.Customer;
 import com.revature.models.Item;
+import com.revature.models.Offer;
 
 public class ItemServices implements IItemServices {
 	
-	public static void removePendingOffers(ArrayList<Customer> customers, Item item) {
-		for (Customer customer : customers) {
-			HashMap<Item, Double> offerItems = customer.getOfferItems();
-			for (Map.Entry mapElement : offerItems.entrySet()) {
-				Item key = (Item) mapElement.getKey();
-				//Double value = (Double) mapElement.getValue(); // keep? remove?
-				if (key.equals(item)) {
-					customer.removeOffer(key);
-				}
+	public static void removePendingOffers(List<Offer> offers, Item item) {
+		
+		//offers = new CopyOnWriteArrayList<Offer>();
+		
+		
+		// iterator will NOT work
+//		Iterator i = offers.iterator();
+//		Offer offer = new Offer();
+//		while(i.hasNext()) {
+//			offer = (Offer) i.next();
+//			if (offer.getItem().equals(item)) {
+//				i.remove();
+//			}
+//		}
+		
+		for (Offer offer : offers) {
+			if (offer.getItem().equals(item)) {
+				offers.remove(offer);
 			}
 		}
 	}

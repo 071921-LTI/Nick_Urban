@@ -1,5 +1,9 @@
 package com.revature.models;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class Offer {
 	
 	public Customer customer;
@@ -13,10 +17,6 @@ public class Offer {
 		this.customer = customer;
 		this.item = item;
 		this.offerAmount = offerAmount;
-	}
-
-	public Offer(Offer offer) {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Offer() {
@@ -48,7 +48,9 @@ public class Offer {
 	public void setOfferAmount(double offerAmount) {
 		this.offerAmount = offerAmount;
 	}
-
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Offer [customer=" + customer + ", item=" + item + ", offerAmount=" + offerAmount + "]";

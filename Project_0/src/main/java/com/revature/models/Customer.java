@@ -3,16 +3,19 @@ package com.revature.models;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Customer implements ICustomer {
 
+	private int id;
+	
 	public String userName = "";
 
 	private String password = "";
 
 	private boolean isEmployee = false;
 
-	public HashMap<Item, Double> offerItems = new HashMap<Item, Double>();
+	//public HashMap<Item, Double> offerItems = new HashMap<Item, Double>();
 
 	public ArrayList<Item> ownedItems = new ArrayList<Item>();
 
@@ -29,13 +32,13 @@ public class Customer implements ICustomer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HashMap<Item, Double> getOfferItems() {
-		return offerItems;
-	}
-
-	public void setOfferItems(HashMap<Item, Double> offerItems) {
-		this.offerItems = offerItems;
-	}
+//	public HashMap<Item, Double> getOfferItems() {
+//		return offerItems;
+//	}
+//
+//	public void setOfferItems(HashMap<Item, Double> offerItems) {
+//		this.offerItems = offerItems;
+//	}
 
 //	public void addOfferItem(Item item, Double price) {
 //		offerItems.put(item, price);
@@ -85,23 +88,34 @@ public class Customer implements ICustomer {
 		else {
 			return false;
 		}
-
 	}
+	
+	
+	public void rejectOffer(Item item, CopyOnWriteArrayList<Offer> offers) {
 
-	public void makeOffer(Item item, double offer) {
-
-		if (offer < 0) {
-			offer = 0;
+		
+		for (Offer offer : offers) {
+			if (offer.getCustomer().equals(this)) {
+				
+				offers.remove(offer);
+			}
 		}
-		
-		offerItems.put(item, offer);
 	}
 
-	public void removeOffer(Item item) {
-		
-		// doesn't work yet (won't actually remove the item)
-		offerItems.remove(item);
-	}
+//	public void makeOffer(Item item, double offer) {
+//
+//		if (offer < 0) {
+//			offer = 0;
+//		}
+//		
+//		//offerItems.put(item, offer);
+//	}
+
+//	public void removeOffer(Item item) {
+//		
+//		// doesn't work yet (won't actually remove the item)
+//		offerItems.remove(item);
+//	}
 
 
 
@@ -116,11 +130,12 @@ public class Customer implements ICustomer {
 
 	}
 
-
 	@Override
 	public String toString() {
-		return "Customer [userName=" + userName + ", password=" + password + ", isEmployee=" + isEmployee
-				+ ", offerItems=" + offerItems + ", ownedItems=" + ownedItems + ", remainingPayments="
-				+ remainingPayments + "]";
+		return "Customer [id=" + id + ", userName=" + userName + ", password=" + password + ", isEmployee=" + isEmployee
+				+ ", ownedItems=" + ownedItems + ", remainingPayments=" + remainingPayments + "]";
 	}
+
+
+	
 }
