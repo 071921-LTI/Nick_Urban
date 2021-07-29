@@ -1,45 +1,44 @@
 package com.revature.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.revature.models.Customer;
 import com.revature.models.Item;
 
 public class ItemServices implements IItemServices {
 	
-	public static ArrayList<Item> items;
-	
-	
-	public static ArrayList<Item> getItems() {
-		return items;
+	public static void removePendingOffers(ArrayList<Customer> customers, Item item) {
+		for (Customer customer : customers) {
+			HashMap<Item, Double> offerItems = customer.getOfferItems();
+			for (Map.Entry mapElement : offerItems.entrySet()) {
+				Item key = (Item) mapElement.getKey();
+				//Double value = (Double) mapElement.getValue(); // keep? remove?
+				if (key.equals(item)) {
+					customer.removeOffer(key);
+				}
+			}
+		}
 	}
 
-	public static void setItems(ArrayList<Item> items) {
-		ItemServices.items = items;
-	}
-
+	
 	public static void markItemAsOwned(Item item) {
-		// TODO Auto-generated method stub
+		item.setOwned(true);
 		
 	}
 
-	public static void calculateWeeklyPayment(Item item) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public static void updateRemainingPayment(Item item) {
-		// TODO Auto-generated method stub
+	public void calculateWeeklyPayment(Customer customer, Item item, int weeks) {
 		
-	}
-
-	public static void addItem(Item item) {
-		// TODO Auto-generated method stub
-		ItemServices.items.add(item);
+		double weeklyPayments = 0;
 		
-	}
-
-	public static void removeItem(Item item) {
-		// TODO Auto-generated method stub
-		ItemServices.items.remove(item);
+		for (Item i : customer.getOwnedItems()) {
+			if (i.equals(item) && item.getIsOwned()) {
+				
+				weeklyPayments = item.getSoldPrice() / weeks;
+				item.setWeeklyPayments(weeklyPayments);
+			}
+		}
 	}
 }

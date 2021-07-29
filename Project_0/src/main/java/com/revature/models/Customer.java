@@ -14,9 +14,9 @@ public class Customer implements ICustomer {
 
 	public HashMap<Item, Double> offerItems = new HashMap<Item, Double>();
 
-	public ArrayList<Item> ownedItems;
+	public ArrayList<Item> ownedItems = new ArrayList<Item>();
 
-	public ArrayList<Double> remainingPayments;
+	public ArrayList<Double> remainingPayments = new ArrayList<Double>();
 
 	
 	public Customer(String userName, String password) {
@@ -25,6 +25,10 @@ public class Customer implements ICustomer {
 		this.password = password;
 	}
 	
+	public Customer() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public HashMap<Item, Double> getOfferItems() {
 		return offerItems;
 	}
@@ -93,7 +97,11 @@ public class Customer implements ICustomer {
 		offerItems.put(item, offer);
 	}
 
-
+	public void removeOffer(Item item) {
+		
+		// doesn't work yet (won't actually remove the item)
+		offerItems.remove(item);
+	}
 
 
 

@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Item  { //implements Comparable<Item> { 
@@ -11,6 +12,8 @@ public class Item  { //implements Comparable<Item> {
 	
 	private double soldPrice;
 	
+	private double weeklyPayments;
+	
 	private double remainingBalance;
 	
 	private double paymentAmount;
@@ -18,6 +21,9 @@ public class Item  { //implements Comparable<Item> {
 	private String description = "";
 	
 	private boolean isOwned = false;
+	
+	// ...maybe
+	//public HashMap<Item, Double> customerOffers = new HashMap<Item, Double>();
 	
 	//public ArrayList<Customer> offers = new ArrayList<Customer>();
 
@@ -103,6 +109,19 @@ public class Item  { //implements Comparable<Item> {
 		this.description = description;
 	}
 	
+	public double getWeeklyPayments() {
+		return weeklyPayments;
+	}
+	
+	public boolean getIsOwned() {
+		return isOwned;
+	}
+	
+	public void setWeeklyPayments(double weeklyPayments) {
+		this.weeklyPayments = weeklyPayments;
+	}
+
+
 	
 	// add interface for stuff below?:
 	public void addOffer(Customer cust, double offer) {
@@ -168,6 +187,10 @@ public class Item  { //implements Comparable<Item> {
 			return false;
 		return true;
 	}
+
+
+
+
 
 //	public int compareTo(Item i) {
 //		// TODO Auto-generated method stub

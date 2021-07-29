@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.revature.services.ItemServices;
+
 public class Employee implements IEmployee {
 
 	public String userName = "";
@@ -13,9 +15,9 @@ public class Employee implements IEmployee {
 
 	private boolean isEmployee = true;
 
-	
-	
-	
+
+
+
 	public Employee(String userName, String password, boolean isEmployee) {
 		super();
 		this.userName = userName;
@@ -54,33 +56,57 @@ public class Employee implements IEmployee {
 
 	}
 
-	public void acceptOffer(Customer customer, Item item) {
+	public void acceptOffer(ArrayList<Customer> customers, Customer customerAccepted, Item item) {
 
-		HashMap<Item, Double> offerItems = customer.getOfferItems();
+		for (Customer currentCustomer : customers ) {
+			
+			if (currentCustomer.equals(customerAccepted)) {
+				HashMap<Item, Double> offerItems = currentCustomer.getOfferItems();
 
-		for (Map.Entry mapElement : offerItems.entrySet()) {
-			Item key = (Item) mapElement.getKey();
-			Double value = (Double) mapElement.getValue();
-			if (key.equals(item)) {
-				customer.addOwnedItem(item);
-				item.setOwned(true);
-				item.setSoldPrice(value);
+				for (Map.Entry mapElement : offerItems.entrySet()) {
+					Item key = (Item) mapElement.getKey();
+					Double value = (Double) mapElement.getValue();
+					if (key.equals(item)) {
+						ItemServices.removePendingOffers(customers, item); // just use this instead of line below?
+						//currentCustomer.removeOffer(key); // this has to happen FIRST
+						// then you can alter the object
+						ItemServices.markItemAsOwned(item);
+						item.setSoldPrice(value);
+						currentCustomer.addOwnedItem(item);
+					}
+				}
+			}
+		}
+	}
+	
+	public void rejectOffer(ArrayList<Customer> customers, Customer customerRejected, Item item) {
+
+		for (Customer currentCustomer : customers ) {
+			
+			if (currentCustomer.equals(customerRejected)) {
+				HashMap<Item, Double> offerItems = currentCustomer.getOfferItems();
+
+				for (Map.Entry mapElement : offerItems.entrySet()) {
+					Item key = (Item) mapElement.getKey();
+					Double value = (Double) mapElement.getValue();
+					if (key.equals(item)) {
+						currentCustomer.removeOffer(key);
+						// maybe remove offer from customer and add it to something like "owned items" ?
+					}
+				}
 			}
 		}
 	}
 
 
-	public Item addItemToShop(Item item) { 
+	public void addItemToShop(ArrayList<Item> items, Item item) { 
 		// TODO Auto-generated method stub
-		item = new Item();
-		return item;
+		items.add(item);
 	}
 
-	public Item removeItemFromShop(Item item) { 
+	public void removeItemFromShop(ArrayList<Item> items, Item item) { 
 		// TODO Auto-generated method stub
-		item = new Item();
-		return item;
-
+		items.remove(item);
 	}
 
 
