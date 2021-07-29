@@ -59,58 +59,83 @@ public class Driver {
 		System.out.println();
 		System.out.println();
 		
+		
+		
 		// shows that a customer has a list of owned items (that can be viewed)
-		System.out.println(cus3.getOwnedItems());
-		emp.acceptOffer(customers, cus3, item1);
-		System.out.println(cus3.getOwnedItems());
+		//
+//		System.out.println(cus3.getOwnedItems());
+//		emp.acceptOffer(customers, cus3, item1);
+//		System.out.println(cus3.getOwnedItems());
+//		
+//		System.out.println();
+//		System.out.println();
+		
 		
 		// shows that the system removes all offers on an item after it is sold
 		//
-//		System.out.println(cus3.getOfferItems());
-//		System.out.println(cus2.getOfferItems());
-//		emp.acceptOffer(customers, cus3, item1);
-//		System.out.println(cus3.getOfferItems());
-//		System.out.println(cus2.getOfferItems());
+		System.out.println(cus3.getOfferItems());
+		System.out.println(cus2.getOfferItems());
+		emp.acceptOffer(customers, cus3, item1);
+		System.out.println(cus3.getOfferItems());
+		System.out.println(cus2.getOfferItems());
+		
+		System.out.println();
+		System.out.println();
 		
 		
 		// shows that employee can reject a customer offer
 		//
-//		System.out.println(cus2.getOfferItems());
-//		emp.rejectOffer(customers, cus2, item1);
-//		System.out.println(cus2.getOfferItems());
+		System.out.println(cus2.getOfferItems());
+		emp.rejectOffer(customers, cus2, item1);
+		System.out.println(cus2.getOfferItems());
 		
 
+		
+		System.out.println();
+		System.out.println();
 		
 		
 		// displays a customer making an offer and employee accepting offer
 		// and item being removed from customers offer hash-set
 		//
-//		System.out.println(cus3.getOfferItems());
-//		System.out.println(item1.toString());
-//		emp.acceptOffer(customers, cus3, item1);
-//		System.out.println("basketball sold");
-//		System.out.println(cus3.getOfferItems());
-//		System.out.println(item1.toString());
+		System.out.println(cus3.getOfferItems());
+		System.out.println(item1.toString());
+		emp.acceptOffer(customers, cus3, item1);
+		System.out.println("basketball sold");
+		System.out.println(cus3.getOfferItems());
+		System.out.println(item1.toString());
+		
+		System.out.println();
+		System.out.println();
+		
 		
 		// customer can make offer, then remove their offer
 		//
-//		cus3.makeOffer(item321, 0);
-//		System.out.println(cus3.getOfferItems());
-//		cus3.removeOffer(item321);
-//		System.out.println(cus3.getOfferItems());
+		cus3.makeOffer(item321, 0);
+		System.out.println(cus3.getOfferItems());
+		cus3.removeOffer(item321);
+		System.out.println(cus3.getOfferItems());
 //		
+		System.out.println();
+		System.out.println();
+		
+		
 		// not sure if this still works, probably not..
 		//
-//		cus3.removeOffer(item1);
-//		System.out.println(cus3.getOfferItems());
+		cus3.removeOffer(item1);
+		System.out.println(cus3.getOfferItems());
+		
+		System.out.println();
+		System.out.println();
+		
 		
 		// shows that employee can add and remove items from "shop"
 		//
-//		System.out.println(items.toString());
-//		emp.addItemToShop(items, item321);
-//		System.out.println(items.toString());
-//		emp.removeItemFromShop(items, item321);
-//		System.out.println(items.toString());
+		System.out.println(items.toString());
+		emp.addItemToShop(items, item321);
+		System.out.println(items.toString());
+		emp.removeItemFromShop(items, item321);
+		System.out.println(items.toString());
 	}
 
 }
