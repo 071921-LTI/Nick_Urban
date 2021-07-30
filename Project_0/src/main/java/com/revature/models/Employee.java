@@ -23,7 +23,7 @@ public class Employee implements IEmployee {
 
 
 
-	public Employee(String userName, String password, boolean isEmployee) {
+	public Employee(int id, String userName, String password, boolean isEmployee) {
 		super();
 		this.userName = userName;
 		this.password = password;

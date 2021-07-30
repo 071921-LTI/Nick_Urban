@@ -23,9 +23,8 @@ public class Item  {
 	
 	private boolean isOwned = false;
 	
-	public Item() {
-		
-	}
+	private Customer owner = new Customer();
+	
 
 	public Item(int id, String description, double askingPrice, double soldPrice, double weeklyPayments,
 			double remainingBalance, double paymentAmount, boolean isOwned) {
@@ -105,6 +104,18 @@ public class Item  {
 		return isOwned;
 	}
 	
+	public Customer getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(Customer owner) {
+		this.owner = owner;
+	}
+	
+	public Item() {
+		
+	}
+
 	public void setWeeklyPayments(double weeklyPayments) {
 		this.weeklyPayments = weeklyPayments;
 	}

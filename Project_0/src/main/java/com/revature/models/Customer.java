@@ -28,6 +28,18 @@ public class Customer implements ICustomer {
 		this.password = password;
 	}
 	
+	
+	
+	public Customer(int id, String userName, String password, boolean isEmployee) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.isEmployee = isEmployee;
+	}
+
+
+
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
