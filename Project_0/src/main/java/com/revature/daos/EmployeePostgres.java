@@ -93,20 +93,29 @@ public class EmployeePostgres implements EmployeeDao {
 	}
 
 	@Override
-	public boolean updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-//		boolean update = false;
-//
-//		String sql = "update employees set * where";
-
-		//executeUpdate
-		return false;
+	public int updateEmployeePassword(Employee employee, String pass) {
+		int rowsChanged = -1;
+		String sql = "update employees set pass = ? where id = ?;";
+		
+		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, pass);
+			ps.setInt(2, employee.getId());
+			
+			rowsChanged = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return rowsChanged;
 	}
 
 	@Override
 	public int deleteEmployee(int id) {
 		int rowsChanged = -1;
-		String sql = "delete from employess where id = ?;";
+		String sql = "delete from employees where id = ?;";
 
 		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);

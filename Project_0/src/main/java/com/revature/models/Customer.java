@@ -11,6 +11,7 @@ public class Customer implements ICustomer {
 	
 	public String userName = "";
 
+
 	private String password = "";
 
 	private boolean isEmployee = false;
@@ -55,6 +56,40 @@ public class Customer implements ICustomer {
 //	public void addOfferItem(Item item, Double price) {
 //		offerItems.put(item, price);
 //	}
+
+	public int getId() {
+		return id;
+	}
+	
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+	
+	public boolean isEmployee() {
+		return isEmployee;
+	}
+	
+	
+	
+	public void setEmployee(boolean isEmployee) {
+		this.isEmployee = isEmployee;
+	}
+	
+	
+	
+	public ArrayList<Double> getRemainingPayments() {
+		return remainingPayments;
+	}
+	
+	
+	
+	public void setRemainingPayments(ArrayList<Double> remainingPayments) {
+		this.remainingPayments = remainingPayments;
+	}
 
 	public ArrayList<Item> getOwnedItems() {
 		return ownedItems;

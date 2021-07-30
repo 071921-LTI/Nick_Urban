@@ -12,6 +12,8 @@ import com.revature.services.ItemServices;
 
 public class Employee implements IEmployee {
 
+
+
 	private int id;
 	
 	public String userName = "";
@@ -25,8 +27,34 @@ public class Employee implements IEmployee {
 
 	public Employee(int id, String userName, String password, boolean isEmployee) {
 		super();
+		this.id = id;
 		this.userName = userName;
 		this.password = password;
+		this.isEmployee = isEmployee;
+	}
+
+	public Employee(String userName, String password, boolean isEmployee) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.isEmployee = isEmployee;
+	}
+
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public boolean isEmployee() {
+		return isEmployee;
+	}
+
+	public void setEmployee(boolean isEmployee) {
 		this.isEmployee = isEmployee;
 	}
 
@@ -61,7 +89,8 @@ public class Employee implements IEmployee {
 
 	}
 
-	public void acceptOffer(Customer customerAccepted, Item item, List<Offer> offers) {
+	public void acceptOffer(Customer customerAccepted, Item item, CopyOnWriteArrayList<Offer> offers) {
+	//public void acceptOffer(Customer customerAccepted, Item item, List<Offer> offers) {
 
 //		for (Customer currentCustomer : customers ) {
 //			
@@ -167,5 +196,13 @@ public class Employee implements IEmployee {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", userName=" + userName + ", password=" + password + ", isEmployee=" + isEmployee
+				+ "]";
+	}
+
+	
+	
 	
 }

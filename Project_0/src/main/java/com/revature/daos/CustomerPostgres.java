@@ -70,7 +70,7 @@ public class CustomerPostgres implements CustomerDao {
 	@Override
 	public int addCustomer(Customer customer) {
 		int id = -1;
-		String sql = "insert into customers (user_name, pass, is_employee) values (?,?,?) returning id;";
+		String sql = "insert into customers (user_name, pass) values (?,?,?) returning id;";
 		
 		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -92,9 +92,22 @@ public class CustomerPostgres implements CustomerDao {
 	}
 
 	@Override
-	public boolean updateCustomer(Customer employee) {
-		// TODO Auto-generated method stub
-		return false;
+	public int updateCustomerPassword(Customer customer, String pass) {
+		int rowsChanged = -1;
+		String sql = "update customers set pass = ? where id = ?;";
+		
+		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, pass);
+			ps.setInt(2, customer.getId());
+
+			rowsChanged = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rowsChanged;
 	}
 
 	@Override

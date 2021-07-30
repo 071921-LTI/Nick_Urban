@@ -23,11 +23,11 @@ public class Item  {
 	
 	private boolean isOwned = false;
 	
-	private Customer owner = new Customer();
+	private int ownerId;
 	
 
 	public Item(int id, String description, double askingPrice, double soldPrice, double weeklyPayments,
-			double remainingBalance, double paymentAmount, boolean isOwned) {
+			double remainingBalance, double paymentAmount, boolean isOwned, int ownerId) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -39,6 +39,19 @@ public class Item  {
 		this.isOwned = isOwned;
 	}
 
+	// for adding to database (omits id since that is primary key that database creates)
+	public Item(String description, double askingPrice, double soldPrice, double weeklyPayments,
+			double remainingBalance, double paymentAmount, boolean isOwned, int ownerId) {
+		super();
+		this.description = description;
+		this.askingPrice = askingPrice;
+		this.soldPrice = soldPrice;
+		this.weeklyPayments = weeklyPayments;
+		this.remainingBalance = remainingBalance;
+		this.paymentAmount = paymentAmount;
+		this.isOwned = isOwned;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -104,14 +117,16 @@ public class Item  {
 		return isOwned;
 	}
 	
-	public Customer getOwner() {
-		return owner;
-	}
 	
-	public void setOwner(Customer owner) {
-		this.owner = owner;
-	}
 	
+	public int getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
+	}
+
 	public Item() {
 		
 	}
@@ -120,21 +135,11 @@ public class Item  {
 		this.weeklyPayments = weeklyPayments;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", description=" + description + ", askingPrice=" + askingPrice + ", soldPrice="
-				+ soldPrice + ", weeklyPayments=" + weeklyPayments + ", remainingBalance=" + remainingBalance
-				+ ", paymentAmount=" + paymentAmount + ", isOwned=" + isOwned + "]";
-	}
-
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(askingPrice, description, id, isOwned, paymentAmount, remainingBalance, soldPrice,
+		return Objects.hash(askingPrice, description, id, isOwned, ownerId, paymentAmount, remainingBalance, soldPrice,
 				weeklyPayments);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -147,10 +152,21 @@ public class Item  {
 		Item other = (Item) obj;
 		return Double.doubleToLongBits(askingPrice) == Double.doubleToLongBits(other.askingPrice)
 				&& Objects.equals(description, other.description) && id == other.id && isOwned == other.isOwned
+				&& ownerId == other.ownerId
 				&& Double.doubleToLongBits(paymentAmount) == Double.doubleToLongBits(other.paymentAmount)
 				&& Double.doubleToLongBits(remainingBalance) == Double.doubleToLongBits(other.remainingBalance)
 				&& Double.doubleToLongBits(soldPrice) == Double.doubleToLongBits(other.soldPrice)
 				&& Double.doubleToLongBits(weeklyPayments) == Double.doubleToLongBits(other.weeklyPayments);
 	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", description=" + description + ", askingPrice=" + askingPrice + ", soldPrice="
+				+ soldPrice + ", weeklyPayments=" + weeklyPayments + ", remainingBalance=" + remainingBalance
+				+ ", paymentAmount=" + paymentAmount + ", isOwned=" + isOwned + ", ownerId=" + ownerId + "]";
+	}
+
+	
+	
 	
 }

@@ -15,7 +15,7 @@ public class ItemPostgres implements ItemDao {
 
 	@Override
 	public Item getItemById(int id) {
-		String sql = "select * from employees where id = ?;";
+		String sql = "select * from items where id = ?;";
 		Item itm = null;
 		
 		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
@@ -35,7 +35,7 @@ public class ItemPostgres implements ItemDao {
 				boolean isOwned = rs.getBoolean("is_owned");
 				int ownerId = rs.getInt("owner_id");
 				
-				itm = new Item(ownerId, description, askingPrice, soldPrice, weeklyPayments, remainingBalance, paymentAmount, isOwned);
+				itm = new Item(iId, description, askingPrice, soldPrice, weeklyPayments, remainingBalance, paymentAmount, isOwned, ownerId);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -65,20 +65,30 @@ public class ItemPostgres implements ItemDao {
 				boolean isOwned = rs.getBoolean("is_owned");
 				int ownerId = rs.getInt("owner_id");
 				
-				Item itm = new Item(ownerId, description, askingPrice, soldPrice, weeklyPayments, remainingBalance, paymentAmount, isOwned);
+				Item itm = new Item(iId, description, askingPrice, soldPrice, weeklyPayments, remainingBalance, paymentAmount, isOwned, ownerId);
 				items.add(itm);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return items;
 	}
 
 	@Override
 	public int addItem(Item item) {
 		int id = -1;
-		String sql = "insert into items (description, asking_price, sold_price, weekly_payments, remaining_balance, payment_amount, is_owned, owner_id) values (?,?,?,?,?,?,?,?) returning id;";
+		String sql = "insert into items "
+				+ "(description, "
+				+ "asking_price, "
+				+ "sold_price, "
+				+ "weekly_payments, "
+				+ "remaining_balance, "
+				+ "payment_amount, "
+				+ "is_owned, "
+				+ "owner_id) "
+				+ "values (?,?,?,?,?,?,?,?) "
+				+ "returning id;";
 		
 		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -90,6 +100,8 @@ public class ItemPostgres implements ItemDao {
 			ps.setDouble(6, item.getPaymentAmount());
 			ps.setBoolean(7, item.getIsOwned());
 			ps.setInt(8, 0); // FIGURE THIS OUT
+			
+			ResultSet rs = ps.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,9 +111,39 @@ public class ItemPostgres implements ItemDao {
 	}
 
 	@Override
-	public boolean updateItem(Item item) {
-		// TODO Auto-generated method stub
-		return false;
+	public int updateItem(Item item) {
+		int rowsChanged = -1;
+		String sql = "update items set "
+				+ "description = ?, "
+				+ "asking_price  = ?, "
+				+ "sold_price  = ?, "
+				+ "weekly_payments  = ?, "
+				+ "remaining_balance  = ?, "
+				+ "payment_amount  = ?, "
+				+ "is_owned  = ?, "
+				+ "owner_id  = ? "
+				+ "where id = ?";
+		
+		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, item.getDescription());
+			ps.setDouble(2, item.getAskingPrice());
+			ps.setDouble(3, item.getSoldPrice());
+			ps.setDouble(4, item.getWeeklyPayments());
+			ps.setDouble(5, item.getRemainingBalance());
+			ps.setDouble(6, item.getPaymentAmount());
+			ps.setBoolean(7, item.getIsOwned());
+			ps.setInt(8, item.getOwnerId());
+			ps.setInt(9, item.getId());
+
+			rowsChanged = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return rowsChanged;
 	}
 
 	@Override

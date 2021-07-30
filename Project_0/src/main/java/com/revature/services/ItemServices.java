@@ -13,7 +13,12 @@ import com.revature.models.Offer;
 
 public class ItemServices implements IItemServices {
 	
-	public static void removePendingOffers(List<Offer> offers, Item item) {
+	//public static List<Offer> offers
+	
+	
+	
+	public static void removePendingOffers(CopyOnWriteArrayList<Offer> offers, Item item) { 
+	//public static void removePendingOffers(List<Offer> offers, Item item) { // maybe try synchronized keyword ?
 		
 		//offers = new CopyOnWriteArrayList<Offer>();
 		
