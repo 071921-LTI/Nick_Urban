@@ -30,6 +30,7 @@ public class EmployeePostgres implements EmployeeDao {
 				String userName = rs.getString("user_name");
 				String pass = rs.getString("pass");
 				boolean isEmployee = rs.getBoolean("is_employee");
+				
 				emp = new Employee(eId, userName, pass, isEmployee);
 
 			}

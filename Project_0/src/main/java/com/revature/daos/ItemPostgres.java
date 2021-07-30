@@ -34,6 +34,8 @@ public class ItemPostgres implements ItemDao {
 				double paymentAmount = rs.getDouble("payment_amount");
 				boolean isOwned = rs.getBoolean("is_owned");
 				int ownerId = rs.getInt("owner_id");
+				
+				itm = new Item(ownerId, description, askingPrice, soldPrice, weeklyPayments, remainingBalance, paymentAmount, isOwned);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -81,13 +83,16 @@ public class ItemPostgres implements ItemDao {
 		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, item.getDescription());
-			ps.setString(2, item.getAskingPrice());
+			ps.setDouble(2, item.getAskingPrice());
 			ps.setDouble(3, item.getSoldPrice());
 			ps.setDouble(4, item.getWeeklyPayments());
 			ps.setDouble(5, item.getRemainingBalance());
 			ps.setDouble(6, item.getPaymentAmount());
-			ps.setBoolean(7, item.getIsOwned()););
+			ps.setBoolean(7, item.getIsOwned());
 			ps.setInt(8, 0); // FIGURE THIS OUT
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return id;
