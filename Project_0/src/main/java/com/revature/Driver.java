@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.revature.controllers.ConsoleMenus;
 import com.revature.daos.CustomerPostgres;
 import com.revature.daos.EmployeePostgres;
 import com.revature.daos.ItemPostgres;
@@ -36,6 +37,7 @@ public class Driver {
 //			e.printStackTrace();
 //		}
 		
+		//ConsoleMenus.displyLoginOrSignUp();
 		
 		Employee emp = new Employee("admin", "123", true);
 		
@@ -47,19 +49,29 @@ public class Driver {
 		Customer cus2 = new Customer("josh", "123");
 		Customer cus3 = new Customer("stacey", "123");
 		
-		Item item1 = new Item(1, "basketball", 20, 0, 0, 0, 0, false, 0);
-		Item item2 = new Item(2, "guitar", 85, 0, 0, 0, 0, false, 0);
-		Item item3 = new Item(3, "rare vinyl record", 675, 0, 0, 0, 0, false, 0);
-		Item item321 = new Item(4, "bag of chips", 14, 0, 0, 0, 0, false, 0);
-		
-		
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		customers.add(cus1);
 		customers.add(cus2);
 		customers.add(cus3);
 
-		EmployeePostgres ep = new EmployeePostgres();
+		Item item1 = new Item(1, "basketball", 20, 0, 0, 0, 0, false, 0);
+		Item item2 = new Item(2, "guitar", 85, 0, 0, 0, 0, false, 0);
+		Item item3 = new Item(3, "rare vinyl record", 675, 0, 0, 0, 0, false, 0);
+		Item item321 = new Item(4, "bag of chips", 14, 0, 0, 0, 0, false, 0);
 		
+		ArrayList<Item> items = new ArrayList<Item>();
+		items.add(item1);
+		items.add(item2);
+		items.add(item3);
+		
+		ConsoleMenus.viewItems(items);
+		
+		
+//
+//		EmployeePostgres ep = new EmployeePostgres();
+//		
+//		ep.addEmployee(new Employee("jon false", "123", false));
+//		ep.addEmployee(new Employee("bob true", "123", true));
 		// get by employee id works
 //		System.out.println(ep.getEmployeeById(1));
 		
@@ -82,7 +94,7 @@ public class Driver {
 		
 		
 		
-		ItemPostgres ip = new ItemPostgres();
+//		ItemPostgres ip = new ItemPostgres();
 		
 		//List<Item> dbItms = new ArrayList<Item>();
 		
@@ -112,7 +124,7 @@ public class Driver {
 		
 		
 		//all work
-		CustomerPostgres cp = new CustomerPostgres();
+//		CustomerPostgres cp = new CustomerPostgres();
 		
 		// works
 		//cp.addCustomer(cus1);
