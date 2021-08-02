@@ -25,6 +25,10 @@ public class Employee implements IEmployee {
 
 
 
+	public Employee() {
+		super();
+	}
+
 	public Employee(int id, String userName, String password, boolean isEmployee) {
 		super();
 		this.id = id;
@@ -86,7 +90,6 @@ public class Employee implements IEmployee {
 		} else {
 			return false;
 		}
-
 	}
 
 	public void acceptOffer(Customer customerAccepted, Item item, CopyOnWriteArrayList<Offer> offers) {

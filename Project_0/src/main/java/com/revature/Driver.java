@@ -33,6 +33,11 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
+		ConsoleMenus.displyLoginOrSignUp();
+
+		
+		
+		
 //		log.trace("This is trace project0");
 //		log.debug("This is a debug project0");
 //		log.info("This is an info project0");
@@ -53,40 +58,34 @@ public class Driver {
 //		}
 		
 		
-		EmployeeDao ep = new EmployeePostgres();
-		ItemDao ip = new ItemPostgres();
-		CustomerDao cp = new CustomerPostgres();
+//		EmployeeDao ep = new EmployeePostgres();
+//		ItemDao ip = new ItemPostgres();
+//		CustomerDao cp = new CustomerPostgres();
+//		
+//		Employee emp = new Employee("admin", "123", true);
+//		
+//		Customer cus1 = new Customer("bill", "123");
+//		Customer cus2 = new Customer("josh", "123");
+//		Customer cus3 = new Customer("stacey", "123");
+//		
+//		ArrayList<Customer> customers = new ArrayList<Customer>();
+//		customers.add(cus1);
+//		customers.add(cus2);
+//		customers.add(cus3);
+//
+//		Item item1 = new Item(1, "basketball", 20, 0, 0, 0, 0, false, 0);
+//		Item item2 = new Item(2, "guitar", 85, 0, 0, 0, 0, false, 0);
+//		Item item3 = new Item(3, "rare vinyl record", 675, 0, 0, 0, 0, false, 0);
+//		Item item321 = new Item(4, "bag of chips", 14, 0, 0, 0, 0, false, 0);
+//		
+//		ArrayList<Item> items = new ArrayList<Item>();
+//		items.add(item1);
+//		items.add(item2);
+//		items.add(item3);
 		
-		Employee emp = new Employee("admin", "123", true);
-		
-		Customer cus1 = new Customer("bill", "123");
-		Customer cus2 = new Customer("josh", "123");
-		Customer cus3 = new Customer("stacey", "123");
-		
-		ArrayList<Customer> customers = new ArrayList<Customer>();
-		customers.add(cus1);
-		customers.add(cus2);
-		customers.add(cus3);
 
-		Item item1 = new Item(1, "basketball", 20, 0, 0, 0, 0, false, 0);
-		Item item2 = new Item(2, "guitar", 85, 0, 0, 0, 0, false, 0);
-		Item item3 = new Item(3, "rare vinyl record", 675, 0, 0, 0, 0, false, 0);
-		Item item321 = new Item(4, "bag of chips", 14, 0, 0, 0, 0, false, 0);
-		
-		ArrayList<Item> items = new ArrayList<Item>();
-		items.add(item1);
-		items.add(item2);
-		items.add(item3);
-
-		
-		
-		//ConsoleMenus.displyLoginOrSignUp();
-		//ConsoleMenus.viewItems(items);
-		
-		
-		
-		Customer rob = cp.getCustomerByUserName("rob");
-		System.out.println(rob);
+//		Customer rob = cp.getCustomerByUserName("rob");
+//		System.out.println(rob);
 //
 //		EmployeePostgres ep = new EmployeePostgres();
 //		
@@ -96,7 +95,7 @@ public class Driver {
 //		System.out.println(ep.getEmployeeById(1));
 		
 		// add employee works
-		ep.addEmployee(new Employee("Jaime", "tame impala", true));
+//		ep.addEmployee(new Employee("Jaime", "tame impala", true));
 		
 		
 		

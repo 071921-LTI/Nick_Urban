@@ -1,0 +1,70 @@
+.homepage {
+    background: 
+    linear-gradient(30deg, #bdbdbd 12%, transparent 12.5%, transparent 87%, #bdbdbd 87.5%, #bdbdbd 0), 
+linear-gradient(150deg, #bdbdbd 12%, transparent 12.5%, transparent 87%, #bdbdbd 87.5%, #bdbdbd 0), 
+linear-gradient(30deg, #bdbdbd 12%, transparent 12.5%, transparent 87%, #bdbdbd 87.5%, #bdbdbd 0), 
+linear-gradient(150deg, #bdbdbd 12%, transparent 12.5%, transparent 87%, #bdbdbd 87.5%, #bdbdbd 0), 
+linear-gradient(60deg, #dbdbdb 25%, transparent 25.5%, transparent 75%, #dbdbdb 75%, #dbdbdb 0), 
+linear-gradient(60deg, #dbdbdb 25%, transparent 25.5%, transparent 75%, #dbdbdb 75%, #dbdbdb 0), #ccc;
+background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+background-size: 80px 140px;
+}
+
+.ttol {
+    background: repeating-radial-gradient(closest-side at 25px 35px, #ccc 15%, #eee 40%);
+background-size:60px 60px;
+}
+
+.aboutme {
+    background: 
+linear-gradient(145deg, #ccc 25%, transparent 25%) -50px 0,
+linear-gradient(225deg, #ccc 25%, transparent 25%) -50px 0,
+linear-gradient(315deg, #ccc 25%, transparent 25%),
+linear-gradient(35deg, #ccc 25%, transparent 25%);	
+background-size: 100px 100px;
+background-color: #eee;
+}
+
+.navbar {
+    
+    list-style: none;
+  background-color: #444;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+    display: inline;
+    font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+
+
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: #fff;
+    transition: .3s background-color;
+}
+
+h1, h2 {
+    /* font-size: x-large; */
+    font-family: 'Fredericka the Great', cursive;
+    text-shadow: 1px 1px 10px black;
+}
+
+p {
+    color: white;
+    
+		text-shadow: 1px 1px 10px black;
+		font-size: x-large;
+}
+
+li {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 1px 1px 5px white;
+}

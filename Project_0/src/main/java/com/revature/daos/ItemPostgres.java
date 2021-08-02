@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.models.Customer;
 import com.revature.models.Item;
 import com.revature.util.ConnectionUtil;
 
@@ -46,6 +47,68 @@ public class ItemPostgres implements ItemDao {
 	}
 
 	@Override
+	public List<Item> getAvailableItems() {
+		List<Item> items = new ArrayList<Item>();
+		
+		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
+			String sql = "select * from items where is_owned = false;";
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			
+			while(rs.next()) {
+				int iId = rs.getInt("id");
+				String description = rs.getString("description");
+				double askingPrice = rs.getDouble("asking_price");
+				double soldPrice = rs.getDouble("sold_price");
+				double weeklyPayments = rs.getDouble("weekly_payments");
+				double remainingBalance = rs.getDouble("remaining_balance");
+				double paymentAmount = rs.getDouble("payment_amount");
+				boolean isOwned = rs.getBoolean("is_owned");
+				int ownerId = rs.getInt("owner_id");
+				
+				Item itm = new Item(iId, description, askingPrice, soldPrice, weeklyPayments, remainingBalance, paymentAmount, isOwned, ownerId);
+				items.add(itm);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return items;
+	}
+	
+	@Override
+	public List<Item> getCustomerOwnedItems(Customer customer) {
+		List<Item> items = new ArrayList<Item>();
+		int custId = customer.getId();
+		
+		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
+			String sql = "select * from items where owner_id = ?;";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, custId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int iId = rs.getInt("id");
+				String description = rs.getString("description");
+				double askingPrice = rs.getDouble("asking_price");
+				double soldPrice = rs.getDouble("sold_price");
+				double weeklyPayments = rs.getDouble("weekly_payments");
+				double remainingBalance = rs.getDouble("remaining_balance");
+				double paymentAmount = rs.getDouble("payment_amount");
+				boolean isOwned = rs.getBoolean("is_owned");
+				int ownerId = rs.getInt("owner_id");
+				
+				Item itm = new Item(iId, description, askingPrice, soldPrice, weeklyPayments, remainingBalance, paymentAmount, isOwned, ownerId);
+				items.add(itm);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return items;
+	}
+
 	public List<Item> getItems() {
 		List<Item> items = new ArrayList<Item>();
 		
@@ -74,7 +137,7 @@ public class ItemPostgres implements ItemDao {
 		}
 		return items;
 	}
-
+	
 	@Override
 	public int addItem(Item item) {
 		int id = -1;

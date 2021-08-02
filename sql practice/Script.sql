@@ -51,8 +51,19 @@ values ('jvm', 700.00, 0, 0, 0, 0, false, null);
 insert into items 
 (description, asking_price, sold_price, weekly_payments, remaining_balance, payment_amount, is_owned, owner_id)
 values ('jdk', 500.00, 0, 0, 0, 0, false, null);
+insert into items 
+(description, asking_price, sold_price, weekly_payments, remaining_balance, payment_amount, is_owned, owner_id)
+values ('jre', 500.00, 0, 0, 0, 0, false, null);
 
 --alter table items add column owner_id int references customers (id);
 
 
+--select * from items where is_owned = false;
 
+
+create table offers (
+	id SERIAL primary key,
+	cust_id int references customers (id),
+	item_id int references items (id),
+	offer_amount numeric(7,2)
+);
