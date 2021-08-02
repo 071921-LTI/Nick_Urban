@@ -11,6 +11,8 @@ create table customers (
 );
 
 insert into customers (user_name, pass, is_employee) values ('joe', 'password', false);
+insert into customers (user_name, pass, is_employee) values ('bill', 'password', false);
+insert into customers (user_name, pass, is_employee) values ('rob', 'password', false);
 truncate customers cascade;
 --ALTER SEQUENCE customers id RESTART WITH 1;
 
@@ -25,6 +27,7 @@ create table employees (
 
 insert into employees (user_name, pass, is_employee) values ('zack', 'password', true); 
 insert into employees (user_name, pass, is_employee) values ('rob', 'pass', true);
+insert into employees (user_name, pass, is_employee) values ('russ', 'pass', true);
 
 
 

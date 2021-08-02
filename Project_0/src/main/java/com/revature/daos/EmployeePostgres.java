@@ -133,8 +133,29 @@ public class EmployeePostgres implements EmployeeDao {
 
 	@Override
 	public Employee getEmployeeByUserName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String sql = "select * from employees where user_name = ?;";
+		Employee emp = null;
 
+		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, userName);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()) {
+				int eId = rs.getInt("id");
+				String uName = rs.getString("user_name");
+				String pass = rs.getString("pass");
+				boolean isEmployee = rs.getBoolean("is_employee");
+				
+				emp = new Employee(eId, uName, pass, isEmployee);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return emp;
+	}
 }

@@ -20,19 +20,6 @@ public class ItemServices implements IItemServices {
 	public static void removePendingOffers(CopyOnWriteArrayList<Offer> offers, Item item) { 
 	//public static void removePendingOffers(List<Offer> offers, Item item) { // maybe try synchronized keyword ?
 		
-		//offers = new CopyOnWriteArrayList<Offer>();
-		
-		
-		// iterator will NOT work
-//		Iterator i = offers.iterator();
-//		Offer offer = new Offer();
-//		while(i.hasNext()) {
-//			offer = (Offer) i.next();
-//			if (offer.getItem().equals(item)) {
-//				i.remove();
-//			}
-//		}
-		
 		for (Offer offer : offers) {
 			if (offer.getItem().equals(item)) {
 				offers.remove(offer);

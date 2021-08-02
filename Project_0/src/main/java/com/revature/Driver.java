@@ -10,9 +10,15 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.controllers.ConsoleMenus;
+import com.revature.daos.CustomerDao;
 import com.revature.daos.CustomerPostgres;
+import com.revature.daos.EmployeeDao;
 import com.revature.daos.EmployeePostgres;
+import com.revature.daos.ItemDao;
 import com.revature.daos.ItemPostgres;
 import com.revature.models.Customer;
 import com.revature.models.Employee;
@@ -23,7 +29,16 @@ import com.revature.services.ItemServices;
 
 public class Driver {
 
+	private static Logger log = LogManager.getRootLogger();
+	
 	public static void main(String[] args) {
+		
+		log.trace("This is trace project0");
+		log.debug("This is a debug project0");
+		log.info("This is an info project0");
+		log.warn("This is a warning project0");
+		log.error("This an error project0");
+		log.fatal("App dead project0");
 		
 //		String url = "jdbc:postgresql://localhost:5432/postgres";
 //		String username = "postgres";
@@ -37,13 +52,12 @@ public class Driver {
 //			e.printStackTrace();
 //		}
 		
-		//ConsoleMenus.displyLoginOrSignUp();
+		
+		EmployeeDao ep = new EmployeePostgres();
+		ItemDao ip = new ItemPostgres();
+		CustomerDao cp = new CustomerPostgres();
 		
 		Employee emp = new Employee("admin", "123", true);
-		
-		
-		
-		
 		
 		Customer cus1 = new Customer("bill", "123");
 		Customer cus2 = new Customer("josh", "123");
@@ -63,10 +77,16 @@ public class Driver {
 		items.add(item1);
 		items.add(item2);
 		items.add(item3);
+
 		
-		ConsoleMenus.viewItems(items);
+		
+		//ConsoleMenus.displyLoginOrSignUp();
+		//ConsoleMenus.viewItems(items);
 		
 		
+		
+		Customer rob = cp.getCustomerByUserName("rob");
+		System.out.println(rob);
 //
 //		EmployeePostgres ep = new EmployeePostgres();
 //		

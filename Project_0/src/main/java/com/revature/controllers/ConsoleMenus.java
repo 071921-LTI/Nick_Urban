@@ -21,13 +21,14 @@ public class ConsoleMenus {
 			
 			switch(choice) {
 			case "1":
-				//System.out.println("sign in");
+				System.out.println("sign in");
 				login();
 				
 				break;
 			case "2":
 				//System.out.println("sign up");
 				signUp();
+				break;
 			}
 			
 			
@@ -40,6 +41,43 @@ public class ConsoleMenus {
 	}
 	
 	public static void login() {
+		String choice = "";
+		
+		
+		do {
+			System.out.println("Customer or Employee? \n1: Customer\n2: Employee");
+			choice = sc.nextLine();
+			
+			switch (choice) {
+			case "1":
+				customerLogin();
+				break;
+
+			case "2":
+				employeeLogin();
+				break;
+			}
+			
+		} while (!choice.equals("1") && !choice.equals("2"));
+	}
+	
+	public static void customerLogin() {
+		String userName = "";
+		String pass = "";
+		
+		System.out.println("Please enter your username: ");
+		userName = sc.nextLine();
+		
+		System.out.println("please enter you password: ");
+		pass = sc.nextLine();
+		
+		System.out.println("LOGGED IN");
+		
+		
+		
+	}
+	
+	public static void employeeLogin() {
 		String userName = "";
 		String pass = "";
 		
@@ -77,6 +115,10 @@ public class ConsoleMenus {
 			System.out.println(item);
 		}
 	} 
+	
+	public static void addItem(Item item) {
+		
+	}
 
 }
 
