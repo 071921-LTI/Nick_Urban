@@ -33,12 +33,12 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
-		log.trace("This is trace project0");
-		log.debug("This is a debug project0");
-		log.info("This is an info project0");
-		log.warn("This is a warning project0");
-		log.error("This an error project0");
-		log.fatal("App dead project0");
+//		log.trace("This is trace project0");
+//		log.debug("This is a debug project0");
+//		log.info("This is an info project0");
+//		log.warn("This is a warning project0");
+//		log.error("This an error project0");
+//		log.fatal("App dead project0");
 		
 //		String url = "jdbc:postgresql://localhost:5432/postgres";
 //		String username = "postgres";
@@ -96,7 +96,7 @@ public class Driver {
 //		System.out.println(ep.getEmployeeById(1));
 		
 		// add employee works
-//		ep.addEmployee(new Employee("Jaime", "tame impala", true));
+		ep.addEmployee(new Employee("Jaime", "tame impala", true));
 		
 		
 		
