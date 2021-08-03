@@ -150,7 +150,7 @@ public class ItemPostgres implements ItemDao {
 				+ "payment_amount, "
 				+ "is_owned, "
 				+ "owner_id) "
-				+ "values (?,?,?,?,?,?,?,?) "
+				+ "values (?,?,?,?,?,?,?,?) " // removed last "?" here
 				+ "returning id;";
 		
 		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
@@ -162,7 +162,7 @@ public class ItemPostgres implements ItemDao {
 			ps.setDouble(5, item.getRemainingBalance());
 			ps.setDouble(6, item.getPaymentAmount());
 			ps.setBoolean(7, item.getIsOwned());
-			ps.setInt(8, 0); // FIGURE THIS OUT
+			ps.setNull(8, 0); // works but not sure if its right
 			
 			ResultSet rs = ps.executeQuery();
 		} catch (SQLException e) {

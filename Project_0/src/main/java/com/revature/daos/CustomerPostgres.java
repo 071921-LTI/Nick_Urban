@@ -70,7 +70,7 @@ public class CustomerPostgres implements CustomerDao {
 	@Override
 	public int addCustomer(Customer customer) {
 		int id = -1;
-		String sql = "insert into customers (user_name, pass) values (?,?,?) returning id;";
+		String sql = "insert into customers (user_name, pass, is_employee) values (?,?,?) returning id;";
 		
 		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);

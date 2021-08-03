@@ -52,6 +52,14 @@ public class Item  {
 		this.isOwned = isOwned;
 	}
 	
+	public Item(String description, double askingPrice) {
+		super();
+		this.description = description;
+		this.askingPrice = askingPrice;
+		this.isOwned = false;
+		this.ownerId = 0;
+	}
+
 	public int getId() {
 		return id;
 	}

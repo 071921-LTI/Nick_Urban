@@ -10,9 +10,9 @@ create table customers (
 	is_employee boolean -- NEEDS WORK
 );
 
-insert into customers (user_name, pass, is_employee) values ('joe', 'password', false);
-insert into customers (user_name, pass, is_employee) values ('bill', 'password', false);
-insert into customers (user_name, pass, is_employee) values ('rob', 'password', false);
+insert into customers (user_name, pass, is_employee) values ('joe', 'pass', false);
+insert into customers (user_name, pass, is_employee) values ('bill', 'pass', false);
+insert into customers (user_name, pass, is_employee) values ('rob', 'pass', false);
 truncate customers cascade;
 --ALTER SEQUENCE customers id RESTART WITH 1;
 
@@ -25,7 +25,7 @@ create table employees (
 	is_employee boolean
 );
 
-insert into employees (user_name, pass, is_employee) values ('zack', 'password', true); 
+insert into employees (user_name, pass, is_employee) values ('zack', 'pass', true); 
 insert into employees (user_name, pass, is_employee) values ('rob', 'pass', true);
 insert into employees (user_name, pass, is_employee) values ('russ', 'pass', true);
 
