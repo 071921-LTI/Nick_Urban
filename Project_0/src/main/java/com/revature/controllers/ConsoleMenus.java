@@ -11,6 +11,7 @@ import com.revature.daos.EmployeeDao;
 import com.revature.daos.EmployeePostgres;
 import com.revature.daos.ItemDao;
 import com.revature.daos.ItemPostgres;
+import com.revature.daos.OfferDao;
 import com.revature.daos.OfferPostgres;
 import com.revature.models.Customer;
 import com.revature.models.Employee;
@@ -25,7 +26,7 @@ public class ConsoleMenus {
 	static Employee employee = new Employee();
 	static List<Item> availableItems = new ArrayList<Item>();
 	//static ArrayList<Item> customerItems = new ArrayList<Item>();
-	static CopyOnWriteArrayList<Offer> offers = new CopyOnWriteArrayList<Offer>();
+	static List<Offer> offers = new CopyOnWriteArrayList<Offer>();
 
 	public static void displyLoginOrSignUp() {
 		
@@ -55,7 +56,7 @@ public class ConsoleMenus {
 		
 		do {
 			System.out.println("welcome " + ConsoleMenus.customer.getUserName() + ", what would you like to do?:");
-			System.out.println("1: view available items\n2: view owned items\n3: view your offers\n4: sign out\n");
+			System.out.println("1: view available items\n2: view owned items\n3: view your offers\n4: view remaining payments\n5: sign out\n");
 			choice = sc.nextLine();
 			
 			switch(choice) {
@@ -74,15 +75,22 @@ public class ConsoleMenus {
 			case "3":
 				System.out.println("here are your current offers:");
 				viewMyOffers();
+				
 				break;
 			case "4": 
+				viewRemainingPayments();
+				sc.nextLine();
+				break;
+				
+			case "5":				
 				ConsoleMenus.customer = null;
 				System.out.println("returning to login menu.");
 				displyLoginOrSignUp();
+				
 				break;
 			}
 			
-		} while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3"));
+		} while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5"));
 	}
 	
 	public static void login() {
@@ -167,7 +175,7 @@ public class ConsoleMenus {
 		
 		do {
 			System.out.println("welcome (employee) " + ConsoleMenus.employee.getUserName() + ", what would you like to do?:");
-			System.out.println("1: view available items\n2: add an item\n3: remove an item\n4: view offers\n5: view payments");
+			System.out.println("1: view available items\n2: add an item\n3: remove an item\n4: view offers\n5: accept offer\n6: remove offer\n7: view payments");
 			choice = sc.nextLine();
 			
 			switch (choice) {
@@ -181,15 +189,23 @@ public class ConsoleMenus {
 				removeItem();
 				break;
 			case "4":
-				viewAllOffers();
+				OfferDao op = new OfferPostgres();
+				ConsoleMenus.offers = op.getOffers();
+				viewAllOffers(ConsoleMenus.offers);
 				break;
 			case "5":
-				
+				acceptOffer();
+				break;
+			case "6":
+				rejectOffer();
+				break;
+			case "7":
+				viewAllItemsRemainingPayments();
 				break;
 			}
 			
 			
-		} while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5"));
+		} while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3") && !choice.equals("4") && !choice.equals("5") && !choice.equals("6") && !choice.equals("7"));
 	}
 	
 	public static void signUp() {
@@ -259,17 +275,74 @@ public class ConsoleMenus {
 		}
 	}
 	 
-	public static void viewAllOffers() {
-		OfferPostgres op = new OfferPostgres();
-		List<Offer> offerList = op.getOffers();
+	public static void acceptOffer() {
 		
-		if(!offerList.isEmpty()) {
-			System.out.println(offerList);
+		OfferPostgres op = new OfferPostgres();
+		ConsoleMenus.offers = op.getOffers();
+		String offerAccept;
+		
+		if(!ConsoleMenus.offers.isEmpty()) {
+			do {
+				System.out.println("here are the current offers:");
+				viewAllOffers(ConsoleMenus.offers);
+				//System.out.println(offerList);
+				System.out.println("select an offer # to accept: ");
+				offerAccept = sc.nextLine();
+			} while (Integer.parseInt(offerAccept) <= 0 && Integer.parseInt(offerAccept) > ConsoleMenus.offers.size());
+			
+			int parsedChoice = Integer.parseInt(offerAccept);
+			Offer winningOffer = ConsoleMenus.offers.get(parsedChoice - 1);
+			Item soldItem = winningOffer.getItem();
+			//Customer customerSold = winningOffer.getCustomer();
+			ItemDao ip = new ItemPostgres(); 
+			ip.updateItemSold(soldItem, winningOffer);
+			
+			op.deleteAllOffersForItem(soldItem.getId());
+			//op.deleteOffer(winningOffer.getId()); // c
 		}
 		else {
 			System.out.println("it looks like there are no offers.");
 		}
+	}
+	
+	public static void rejectOffer() {
+		OfferPostgres op = new OfferPostgres();
+		ConsoleMenus.offers = op.getOffers();
+		String offerReject;
 		
+		if(!ConsoleMenus.offers.isEmpty()) {
+			do {
+				System.out.println("here are the current offers:");
+				viewAllOffers(ConsoleMenus.offers);
+				System.out.println("select an offer # to reject: ");
+				offerReject = sc.nextLine();
+			} while (Integer.parseInt(offerReject) <= 0 && Integer.parseInt(offerReject) > ConsoleMenus.offers.size());
+			
+			int parsedChoice = Integer.parseInt(offerReject);
+			Offer rejectedOffer = ConsoleMenus.offers.get(parsedChoice - 1);
+			
+			op.deleteOffer(rejectedOffer.getId());
+			
+//			Item soldItem = winningOffer.getItem();
+//			//Customer customerSold = winningOffer.getCustomer();
+//			ItemDao ip = new ItemPostgres(); 
+//			ip.updateItemSold(soldItem, winningOffer);
+//			
+//			op.deleteAllOffersForItem(soldItem.getId());
+//			//op.deleteOffer(winningOffer.getId()); // c
+//		}
+//		else {
+//			System.out.println("it looks like there are no offers.");
+		}
+	}
+	
+	public static void viewAllOffers(List<Offer> offers) {
+		int offerNum = 1;
+		for (Offer offer : offers) {
+			
+			System.out.println( offerNum + ": " + offer.toString());
+			offerNum++;
+		}
 	}
 	
 	public static void makeOffer() {
@@ -348,6 +421,27 @@ public class ConsoleMenus {
 		ip.deleteItem(itemToBeRemoved.getId());
 	}
 
+	public static void viewRemainingPayments() {
+		ItemDao ip = new ItemPostgres();
+		List<Item> custItems = ip.getCustomerOwnedItems(ConsoleMenus.customer);
+		
+		System.out.println("here are your remaining payments:");
+		for (Item item : custItems) {
+			System.out.println("your payments for item - (" + item.getDescription() + ") $" + item.getWeeklyPayments() + " x12");
+		}
+		
+	}
+	
+	public static void viewAllItemsRemainingPayments() {
+		ItemDao ip = new ItemPostgres();
+		List<Item> allItems = ip.getItems();
+		
+		for (Item item : allItems) {
+			if(item.getIsOwned() == true) {
+				System.out.println("Remaining payments for item - (" + item.getDescription() + ") $" + item.getWeeklyPayments() + " x12");
+			}
+		}
+	}
 }
 
 

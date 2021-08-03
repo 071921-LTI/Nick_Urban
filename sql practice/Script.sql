@@ -32,6 +32,7 @@ insert into employees (user_name, pass, is_employee) values ('russ', 'pass', tru
 
 
 drop table items cascade;
+truncate table items cascade;
 --run statement above to drop, then run below to recreate
 create table items (
 	id SERIAL primary key,
@@ -67,3 +68,5 @@ create table offers (
 	item_id int references items (id),
 	offer_amount numeric(7,2)
 );
+
+

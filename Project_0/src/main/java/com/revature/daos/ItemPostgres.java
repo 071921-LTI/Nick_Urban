@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.revature.models.Customer;
 import com.revature.models.Item;
+import com.revature.models.Offer;
 import com.revature.util.ConnectionUtil;
 
 public class ItemPostgres implements ItemDao {
@@ -109,6 +110,7 @@ public class ItemPostgres implements ItemDao {
 		return items;
 	}
 
+	
 	public List<Item> getItems() {
 		List<Item> items = new ArrayList<Item>();
 		
@@ -197,6 +199,43 @@ public class ItemPostgres implements ItemDao {
 			ps.setDouble(6, item.getPaymentAmount());
 			ps.setBoolean(7, item.getIsOwned());
 			ps.setInt(8, item.getOwnerId());
+			ps.setInt(9, item.getId());
+
+			rowsChanged = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return rowsChanged;
+	}
+	
+	public int updateItemSold(Item item, Offer offer) {
+		int rowsChanged = -1;
+		String sql = "update items set "
+				+ "description = ?, "
+				+ "asking_price  = ?, "
+				+ "sold_price  = ?, "
+				+ "weekly_payments  = ?, "
+				+ "remaining_balance  = ?, "
+				+ "payment_amount  = ?, "
+				+ "is_owned  = ?, "
+				+ "owner_id  = ? "
+				+ "where id = ?";
+		
+		Customer customer = offer.getCustomer();
+		
+		try (Connection con = ConnectionUtil.getHardCodedConnection()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, item.getDescription());
+			ps.setDouble(2, item.getAskingPrice());
+			ps.setDouble(3, offer.getOfferAmount());
+			ps.setDouble(4, offer.getOfferAmount() / 12); //item.getWeeklyPayments());
+			ps.setDouble(5, offer.getOfferAmount()); //item.getRemainingBalance());
+			ps.setDouble(6, item.getPaymentAmount());
+			ps.setBoolean(7, true);
+			ps.setInt(8, customer.getId());
 			ps.setInt(9, item.getId());
 
 			rowsChanged = ps.executeUpdate();

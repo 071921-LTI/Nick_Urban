@@ -6,6 +6,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Offer {
 	
+	public int id;
+
 	public Customer customer;
 
 	public Item item;
@@ -19,10 +21,25 @@ public class Offer {
 		this.offerAmount = offerAmount;
 	}
 
+	public Offer(int id, Customer customer, Item item, double offerAmount) {
+		super();
+		this.id = id;
+		this.customer = customer;
+		this.item = item;
+		this.offerAmount = offerAmount;
+	}
+
 	public Offer() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
 
 	public Customer getCustomer() {
