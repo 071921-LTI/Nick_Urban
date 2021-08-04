@@ -25,6 +25,8 @@ create table employees (
 	is_employee boolean
 );
 
+insert into employees (user_name, pass, is_employee) values ('emp', '123', true);
+
 insert into employees (user_name, pass, is_employee) values ('zack', 'pass', true); 
 insert into employees (user_name, pass, is_employee) values ('rob', 'pass', true);
 insert into employees (user_name, pass, is_employee) values ('russ', 'pass', true);
@@ -61,7 +63,7 @@ values ('jre', 500.00, 0, 0, 0, 0, false, null);
 
 --select * from items where is_owned = false;
 
-
+drop table offers cascade;
 create table offers (
 	id SERIAL primary key,
 	cust_id int references customers (id),

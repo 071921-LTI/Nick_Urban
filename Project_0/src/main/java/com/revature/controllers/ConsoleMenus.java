@@ -1,9 +1,15 @@
 package com.revature.controllers;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.daos.CustomerDao;
 import com.revature.daos.CustomerPostgres;
@@ -20,6 +26,8 @@ import com.revature.models.Offer;
 
 public class ConsoleMenus {
 
+	private static Logger log = LogManager.getRootLogger();
+	
 	static Scanner sc = new Scanner(System.in);
 
 	static Customer customer = new Customer();
@@ -39,12 +47,12 @@ public class ConsoleMenus {
 			
 			switch(choice) {
 			case "1":
-				//System.out.println("sign in");
+				
 				login();
 				
 				break;
 			case "2":
-				//System.out.println("sign up");
+				
 				signUp();
 				break;
 			}
@@ -52,6 +60,7 @@ public class ConsoleMenus {
 	}
 	
 	public static void customerMenu() {
+		log.info("customer logged in");
 		String choice = "";
 		
 		do {
@@ -171,6 +180,8 @@ public class ConsoleMenus {
 	}
 	
 	public static void employeeMenu() {
+		
+		log.info("employee logged in");
 		String choice = "";
 		
 		do {
@@ -296,6 +307,8 @@ public class ConsoleMenus {
 			//Customer customerSold = winningOffer.getCustomer();
 			ItemDao ip = new ItemPostgres(); 
 			ip.updateItemSold(soldItem, winningOffer);
+			
+			log.info("Item was purchased");
 			
 			op.deleteAllOffersForItem(soldItem.getId());
 			//op.deleteOffer(winningOffer.getId()); // c
