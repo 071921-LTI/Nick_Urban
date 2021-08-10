@@ -2,27 +2,23 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>Project1</display-name>
   
-  <!-- 
-  <servlet>
-		<servlet-name>SERVLET-NAME</servlet-name>
-		<servlet-class>com.nick......</servlet-class>
-		<load-on-startup>0</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SERVLET-NAME</servlet-name>
-		<url-pattern>/URL-PATTERN</url-pattern>
-	</servlet-mapping>
-  
-   -->
    
    <servlet>
-		<servlet-name>Project1</servlet-name>
-		<servlet-class>servlets.HelloServlet</servlet-class>
-		<load-on-startup>0</load-on-startup>
+		<servlet-name>auth-servlet</servlet-name>
+		<servlet-class>servlets.AuthServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Project1</servlet-name>
-		<url-pattern>/hello</url-pattern>
+		<servlet-name>auth-servlet</servlet-name>
+		<url-pattern>/_____</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>_____-servlet</servlet-name>
+		<servlet-class>servlets._____</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>_____-servlet</servlet-name>
+		<url-pattern>/_____</url-pattern>
 	</servlet-mapping>
    
   
