@@ -1,9 +1,9 @@
-package daos;
+package com.nick.daos;
 
 import java.util.List;
 
-import exceptions.UserNotFoundException;
-import models.User;
+import com.nick.exceptions.UserNotFoundException;
+import com.nick.models.User;
 
 public interface UserDao {
 	

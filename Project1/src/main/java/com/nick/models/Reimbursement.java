@@ -1,4 +1,4 @@
-package models;
+package com.nick.models;
 
 import java.sql.Timestamp;
 

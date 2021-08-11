@@ -1,11 +1,12 @@
-package daos;
+package com.nick.services;
 
 import java.util.List;
 
-import exceptions.ReimbursementNotFoundException;
-import models.Reimbursement;
+import com.nick.exceptions.ReimbursementNotFoundException;
+import com.nick.models.Reimbursement;
 
-public interface ReimbursementDao {
+public interface ReimbursementService {
+
 	Reimbursement getReimbursementById(int id) throws ReimbursementNotFoundException;
 	
 	List<Reimbursement> getReimbursementsByEmployeeId(int id);
@@ -14,10 +15,9 @@ public interface ReimbursementDao {
 	List<Reimbursement> getEmployeeResolvedReimbursements(int empId);
 	List<Reimbursement> getReimbursements();
 	
-	int addReimbursement(Reimbursement reimbursement);
+	boolean addReimbursement(Reimbursement reimbursement);
 	
-	boolean updateReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException;
+	//boolean updateReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException; // need this here?
 	
-	int deleteReimbursement(int id) throws ReimbursementNotFoundException;
-	
+	boolean deleteReimbursement(int id) throws ReimbursementNotFoundException;
 }

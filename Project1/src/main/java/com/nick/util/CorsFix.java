@@ -1,4 +1,4 @@
-package util;
+package com.nick.util;
 
 import javax.servlet.http.HttpServletResponse;
 

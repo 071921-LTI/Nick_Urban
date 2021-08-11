@@ -1,4 +1,4 @@
-package controllers;
+package com.nick.controllers;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package exceptions;
+package com.nick.exceptions;
 
 public class UserNotFoundException extends Exception {
 

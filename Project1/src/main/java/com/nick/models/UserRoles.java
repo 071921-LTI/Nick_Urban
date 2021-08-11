@@ -1,4 +1,4 @@
-package models;
+package com.nick.models;
 
 public class UserRoles {
 	private int id;

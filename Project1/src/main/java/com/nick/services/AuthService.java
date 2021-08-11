@@ -1,7 +1,7 @@
-package services;
+package com.nick.services;
 
-import exceptions.UserNotFoundException;
-import models.User;
+import com.nick.exceptions.UserNotFoundException;
+import com.nick.models.User;
 
 public interface AuthService {
 	User login(String username, String password) throws UserNotFoundException;

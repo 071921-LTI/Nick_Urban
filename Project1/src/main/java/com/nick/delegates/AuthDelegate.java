@@ -1,4 +1,4 @@
-package delegates;
+package com.nick.delegates;
 
 import java.io.IOException;
 
@@ -6,13 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ReimbursementDelegate implements Delegatable {
+public class AuthDelegate implements Delegatable {
 
 	// add the corresponding service(s) implementation here (to be used in the methods)
 	
 	@Override
 	public void process(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-
 		String method = rq.getMethod();
 
 		switch (method) {
@@ -36,22 +35,23 @@ public class ReimbursementDelegate implements Delegatable {
 
 	@Override
 	public void handleGet(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-		System.out.println("in handleGet in: " + this.getClass());		
+		System.out.println("in handleGet in: " + this.getClass());
+		
 	}
 
 	@Override
 	public void handlePut(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-		System.out.println("in handlePut in: " + this.getClass());		
+		System.out.println("in handlePut in: " + this.getClass());
+		
 	}
 
 	@Override
 	public void handlePost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-		System.out.println("in handlePost in: " + this.getClass());			
+		System.out.println("in handlePost in: " + this.getClass());		
 	}
 
 	@Override
 	public void handleDelete(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
 		System.out.println("in handleDelete in: " + this.getClass());		
 	}
-
 }

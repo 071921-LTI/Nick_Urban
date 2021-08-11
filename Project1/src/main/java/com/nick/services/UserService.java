@@ -1,9 +1,9 @@
-package services;
+package com.nick.services;
 
 import java.util.List;
 
-import exceptions.UserNotFoundException;
-import models.User;
+import com.nick.exceptions.UserNotFoundException;
+import com.nick.models.User;
 
 public interface UserService {
 	User getUserById(int id) throws UserNotFoundException;

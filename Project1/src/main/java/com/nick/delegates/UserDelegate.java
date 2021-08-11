@@ -1,4 +1,4 @@
-package delegates;
+package com.nick.delegates;
 
 import java.io.IOException;
 

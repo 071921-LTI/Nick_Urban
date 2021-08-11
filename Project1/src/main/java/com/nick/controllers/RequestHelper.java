@@ -1,4 +1,4 @@
-package controllers;
+package com.nick.controllers;
 
 import java.io.IOException;
 
@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import delegates.AuthDelegate;
-import delegates.ReimbursementDelegate;
-import delegates.UserDelegate;
+import com.nick.delegates.AuthDelegate;
+import com.nick.delegates.ReimbursementDelegate;
+import com.nick.delegates.UserDelegate;
 
 public class RequestHelper {
 
