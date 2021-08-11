@@ -15,7 +15,7 @@ public interface ReimbursementService {
 	List<Reimbursement> getEmployeeResolvedReimbursements(int empId);
 	List<Reimbursement> getReimbursements();
 	
-	boolean addReimbursement(Reimbursement reimbursement);
+	void addReimbursement(Reimbursement reimbursement);
 	
 	//boolean updateReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException; // need this here?
 	

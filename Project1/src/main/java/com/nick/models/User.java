@@ -1,13 +1,37 @@
 package com.nick.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ers_users")
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ers_users_id")
 	private int id;
+	
+	@Column(name="ers_username", nullable = false)
 	private String userName;
+	
+	@Column(name="ers_password", nullable = false)
 	private String passWord;
+	
+	@Column(name="user_first_name", nullable = false)
 	private String firstName;
+	
+	@Column(name="user_last_name", nullable = false)
 	private String lastName;
+	
+	@Column(name="user_email", nullable = false)
 	private String email;
+	
+	@Column(name="user_role_id", nullable = false)
 	private int userRoleId;
 	
 	

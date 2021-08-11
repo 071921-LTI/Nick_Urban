@@ -16,7 +16,7 @@
 		<property name="hibernate.connection.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.show_sql">true</property>
 		
-		<property name="hibernate.Reimbursment_schema"></property> 
+		<property name="hibernate.default_schema">Reimbursment_schema</property>
 		
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		
@@ -24,7 +24,7 @@
 		<mapping class="com.nick.models.ReimbursementStatus"></mapping>
 		<mapping class="com.nick.models.ReimbursementType"></mapping>
 		<mapping class="com.nick.models.User"></mapping>
-		<mapping class="com.nick.models.userRole"></mapping>
+		<mapping class="com.nick.models.UserRoles"></mapping>
 
     </session-factory>
 

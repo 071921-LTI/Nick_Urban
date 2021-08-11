@@ -13,11 +13,11 @@ public interface UserDao {
 	
 	List<User> getUsers();
 	
-	int addUser(User user);
+	void addUser(User user);
 	
-	boolean updateUser(User user) throws UserNotFoundException;
+	void updateUser(User user) throws UserNotFoundException;
 	
-	int deleteUser(int id) throws UserNotFoundException;
+	void deleteUser(int id) throws UserNotFoundException;
 	
 
 }

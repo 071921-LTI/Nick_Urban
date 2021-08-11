@@ -14,10 +14,10 @@ public interface ReimbursementDao {
 	List<Reimbursement> getEmployeeResolvedReimbursements(int empId);
 	List<Reimbursement> getReimbursements();
 	
-	int addReimbursement(Reimbursement reimbursement);
+	Reimbursement addReimbursement(Reimbursement reimbursement);
 	
-	boolean updateReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException;
+	void updateReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException;
 	
-	int deleteReimbursement(int id) throws ReimbursementNotFoundException;
+	void deleteReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException;
 	
 }

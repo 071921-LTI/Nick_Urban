@@ -1,18 +1,50 @@
 package com.nick.models;
 
 import java.sql.Timestamp;
+//import java.sql.Blob;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="ers_reimbursement")
 public class Reimbursement {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="reimb_id")
 	private int id;
+	
+	@Column(name="reimb_amount", nullable = false)
 	private double amount;
+	
+	@Column(name="reimb_submitted", nullable = false)
 	private Timestamp submitDate;
+	
+	@Column(name="reimb_resolved")
 	private Timestamp resolveDate;
+	
+	@Column(name="reimb_description")
 	private String description;
+	
+	@Column(name="reimb_receipt")
 	private String receipt; // string for now, change later?
+	
+	@Column(name="reimb_author", nullable = false)
 	private int authorId;
+	
+	@Column(name="reimb_resolver")
 	private int resolverId;
+	
+	@Column(name="reimb_status_id", nullable = false)
 	private int statusId;
+	
+	@Column(name="reimb_type_id", nullable = false)
 	private int typeId;
 	
 	

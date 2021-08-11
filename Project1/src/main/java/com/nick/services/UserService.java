@@ -11,7 +11,7 @@ public interface UserService {
 	List<User> getUsersByRole(String role);
 	List<User> getUsers();
 	
-	boolean addUser(User user);
+	void addUser(User user);
 	
 	//boolean updateUser(User user) throws UserNotFoundException; // need this here?
 	

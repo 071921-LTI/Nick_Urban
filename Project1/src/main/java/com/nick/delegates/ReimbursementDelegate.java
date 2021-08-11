@@ -1,14 +1,22 @@
 package com.nick.delegates;
 
 import java.io.IOException;
+import java.io.InputStream;
 
+import javax.persistence.RollbackException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nick.models.Reimbursement;
+import com.nick.services.ReimbursementService;
+import com.nick.services.ReimbursementServiceImpl;
+
 public class ReimbursementDelegate implements Delegatable {
 
 	// add the corresponding service(s) implementation here (to be used in the methods)
+	ReimbursementService reimS = new ReimbursementServiceImpl();
 	
 	@Override
 	public void process(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
@@ -44,9 +52,24 @@ public class ReimbursementDelegate implements Delegatable {
 		System.out.println("in handlePut in: " + this.getClass());		
 	}
 
+	// add new reimbursement
 	@Override
 	public void handlePost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-		System.out.println("in handlePost in: " + this.getClass());			
+		System.out.println("in handlePost in: " + this.getClass());	
+		
+		InputStream request = rq.getInputStream();
+		
+		Reimbursement reimbursement = new ObjectMapper().readValue(request, Reimbursement.class);
+		//Reimbursement reimbursement = new Reimbursement(50, this.toLocalDateTime(), null, null, null, 0, 0, 0, 0);
+		try {
+			
+			reimS.addReimbursement(reimbursement);
+			rs.setStatus(201);
+		} catch (RollbackException e) {
+			rs.sendError(400, "Unable to add Reimbursement.");
+		}
+		
+		
 	}
 
 	@Override
