@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+version="2.5">
   <display-name>Project1</display-name>
   
    
    <servlet>
-		<servlet-name>auth-servlet</servlet-name>
-		<servlet-class>servlets.AuthServlet</servlet-class>
+		<servlet-name>front</servlet-name>
+		<servlet-class>com.nick.controllers.FrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>auth-servlet</servlet-name>
-		<url-pattern>/_____</url-pattern>
+		<servlet-name>front</servlet-name>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>_____-servlet</servlet-name>
-		<servlet-class>servlets._____</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>_____-servlet</servlet-name>
-		<url-pattern>/_____</url-pattern>
-	</servlet-mapping>
-   
-  
 </web-app>
