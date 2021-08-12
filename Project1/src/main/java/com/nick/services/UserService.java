@@ -7,8 +7,11 @@ import com.nick.models.User;
 
 public interface UserService {
 	User getUserById(int id) throws UserNotFoundException;
+	
 	User getUserByUserName(String userName) throws UserNotFoundException;
+	
 	List<User> getUsersByRole(String role);
+	
 	List<User> getUsers();
 	
 	void addUser(User user);

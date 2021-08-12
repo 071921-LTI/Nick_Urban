@@ -32,27 +32,15 @@ public class User {
 	private String email;
 	
 	@Column(name="user_role_id", nullable = false)
-	private int userRoleId;
-	
-	
-	// Constructors
+	private UserRoles userRole;
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userName, String passWord, String firstName, String lastName, String email, int userRoleId) {
-		super();
-		this.userName = userName;
-		this.passWord = passWord;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.userRoleId = userRoleId;
-	}
-
 	public User(int id, String userName, String passWord, String firstName, String lastName, String email,
-			int userRoleId) {
+			UserRoles userRole) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -60,11 +48,19 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.userRoleId = userRoleId;
+		this.userRole = userRole;
 	}
 
-	
-	// Getters and setters
+	public User(String userName, String passWord, String firstName, String lastName, String email, UserRoles userRole) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.userRole = userRole;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -113,16 +109,14 @@ public class User {
 		this.email = email;
 	}
 
-	public int getUserRoleId() {
-		return userRoleId;
+	public UserRoles getUserRole() {
+		return userRole;
 	}
 
-	public void setUserRoleId(int userRoleId) {
-		this.userRoleId = userRoleId;
+	public void setUserRole(UserRoles userRole) {
+		this.userRole = userRole;
 	}
 
-	
-	// Equals and Hashcode
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -133,7 +127,7 @@ public class User {
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((passWord == null) ? 0 : passWord.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		result = prime * result + userRoleId;
+		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
 		return result;
 	}
 
@@ -173,18 +167,20 @@ public class User {
 				return false;
 		} else if (!userName.equals(other.userName))
 			return false;
-		if (userRoleId != other.userRoleId)
+		if (userRole == null) {
+			if (other.userRole != null)
+				return false;
+		} else if (!userRole.equals(other.userRole))
 			return false;
 		return true;
 	}
 
-	
-	// To string
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", passWord=" + passWord + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", userRoleId=" + userRoleId + "]";
+				+ ", lastName=" + lastName + ", email=" + email + ", userRole=" + userRole + "]";
 	}
+	
 	
 	
 	

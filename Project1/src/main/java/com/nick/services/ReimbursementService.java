@@ -10,9 +10,13 @@ public interface ReimbursementService {
 	Reimbursement getReimbursementById(int id) throws ReimbursementNotFoundException;
 	
 	List<Reimbursement> getReimbursementsByEmployeeId(int id);
+	
 	List<Reimbursement> getAllReimbursementsByStatus(String status);
+	
 	List<Reimbursement> getEmployeePendingReimbursements(int empId);
+	
 	List<Reimbursement> getEmployeeResolvedReimbursements(int empId);
+	
 	List<Reimbursement> getReimbursements();
 	
 	void addReimbursement(Reimbursement reimbursement);

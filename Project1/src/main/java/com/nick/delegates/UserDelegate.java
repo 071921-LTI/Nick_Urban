@@ -59,7 +59,7 @@ public class UserDelegate implements Delegatable {
 		InputStream request = rq.getInputStream();
 		
 		//User user = new ObjectMapper().readValue(request, User.class);
-		User user = new User("nick", "pass", "nick", "urban", "nick@mail", 1);
+		User user = new User("rick", "pass", "nick", "urban", "nick@mail", 1);
 		try {
 			us.addUser(user);
 			rs.setStatus(201);
