@@ -17,7 +17,7 @@ public interface UserDao {
 	
 	void updateUser(User user) throws UserNotFoundException;
 	
-	void deleteUser(int id) throws UserNotFoundException;
+	void deleteUser(User user) throws UserNotFoundException;
 	
 
 }

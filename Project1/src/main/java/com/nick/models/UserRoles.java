@@ -1,7 +1,22 @@
 package com.nick.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ers_user_roles")
 public class UserRoles {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ers_user_role_id")
 	private int id;
+	
+	@Column(name="user_role", nullable = false)
 	private String userRole;
 	
 	

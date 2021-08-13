@@ -4,14 +4,18 @@ import java.util.List;
 
 import com.nick.exceptions.ReimbursementNotFoundException;
 import com.nick.models.Reimbursement;
+import com.nick.models.ReimbursementStatus;
+import com.nick.models.User;
 
 public interface ReimbursementDao {
 	Reimbursement getReimbursementById(int id) throws ReimbursementNotFoundException;
 	
-	List<Reimbursement> getReimbursementsByEmployeeId(int id);
-	List<Reimbursement> getAllReimbursementsByStatus(String status);
-	List<Reimbursement> getEmployeePendingReimbursements(int empId);
-	List<Reimbursement> getEmployeeResolvedReimbursements(int empId);
+	List<Reimbursement> getReimbursementsByEmployeeId(User user);
+	
+	List<Reimbursement> getAllReimbursementsByStatus(ReimbursementStatus status);
+	
+	public List<Reimbursement> getEmployeeReimbursementsByStatus(User user, ReimbursementStatus status);
+	
 	List<Reimbursement> getReimbursements();
 	
 	Reimbursement addReimbursement(Reimbursement reimbursement);

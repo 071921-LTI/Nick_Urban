@@ -13,26 +13,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserById(int id) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return ud.getUserById(id);
 	}
 
 	@Override
 	public User getUserByUserName(String userName) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return ud.getUserByUserName(userName);
 	}
 
 	@Override
 	public List<User> getUsersByRole(String role) {
-		// TODO Auto-generated method stub
-		return null;
+		return ud.getUsersByRole(role);
 	}
 
 	@Override
 	public List<User> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return ud.getUsers();
 	}
 
 	@Override
@@ -42,9 +38,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public boolean updateUser(User user) throws UserNotFoundException {
+		try { // see if updating a user throws an erroer in UserHibernate, if so return false (this should work?)
+			
+		}
+	}
+	
+	@Override
 	public boolean deleteUser(int id) throws UserNotFoundException {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	
 	
 }

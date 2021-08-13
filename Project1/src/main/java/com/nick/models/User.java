@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +18,7 @@ public class User {
 	@Column(name="ers_users_id")
 	private int id;
 	
-	@Column(name="ers_username", nullable = false)
+	@Column(name="ers_username", nullable = false, unique = true)
 	private String userName;
 	
 	@Column(name="ers_password", nullable = false)
@@ -28,10 +30,11 @@ public class User {
 	@Column(name="user_last_name", nullable = false)
 	private String lastName;
 	
-	@Column(name="user_email", nullable = false)
+	@Column(name="user_email", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name="user_role_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name="user_role_id", nullable = false)
 	private UserRoles userRole;
 
 	public User() {

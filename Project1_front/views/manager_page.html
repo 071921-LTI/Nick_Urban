@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manager</title>
+</head>
+<body>
+    <h1>Manager Portal</h1>
+
+    <h2>All Reimbursements</h2>
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>Date Submitted</th>
+            <th>Date Resolved</th>
+            <th>Description</th>
+            <th>Requested by</th>
+            <th>Resolved by</th>
+            <th>Status</th>
+            <th>Type</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+    </table>   
+    
+    <h2>Filter by request status</h2>
+    <form action="manager_page.html">
+        <input type="radio" name="req_stat" id="req_pending">
+        <label for="req_pending">Pending requests</label><br>
+        <input type="radio" name="req_stat" id="req_resolved">
+        <label for="req_resolved">Resolved requests</label><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -35,16 +37,20 @@ public class Reimbursement {
 	@Column(name="reimb_receipt")
 	private String receipt; // string for now, change later?
 	
-	@Column(name="reimb_author", nullable = false)
+	@ManyToOne
+	@JoinColumn(name="reimb_author", nullable = false)
 	private User author;
 	
-	@Column(name="reimb_resolver")
+	@ManyToOne
+	@JoinColumn(name="reimb_resolver")
 	private User resolver;
 	
-	@Column(name="reimb_status_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name="reimb_status_id", nullable = false)
 	private ReimbursementStatus status;
 	
-	@Column(name="reimb_type_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name="reimb_type_id", nullable = false)
 	private ReimbursementType type;
 
 	
