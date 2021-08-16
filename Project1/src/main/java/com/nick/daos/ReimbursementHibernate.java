@@ -1,5 +1,7 @@
 package com.nick.daos;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 //import javax.persistence.Query;
@@ -74,6 +76,13 @@ public class ReimbursementHibernate implements ReimbursementDao {
 
 	@Override
 	public Reimbursement addReimbursement(Reimbursement reimbursement) {
+		Date submitDate = new Date();
+		Timestamp ts = new Timestamp(submitDate.getTime());
+		reimbursement.setSubmitDate(ts);
+
+		//reimbursement.setStatus(____); // do this here ??
+		
+		
 		try(Session s = HibernateUtil.getSessionFactory().openSession()){
 			Transaction tx = s.beginTransaction();
 			s.save(reimbursement);

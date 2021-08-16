@@ -33,7 +33,7 @@ public class UserHibernate implements UserDao {
 	public User getUserByUserName(String userName) throws UserNotFoundException {
 		User user = null;
 		try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-			String hql = "from User where userName = :uName";
+			String hql = "FROM User WHERE userName = :uName";
 			TypedQuery<User> tq = s.createQuery(hql, User.class);
 			tq.setParameter("uName", userName);
 			

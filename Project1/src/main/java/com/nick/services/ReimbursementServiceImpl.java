@@ -6,6 +6,8 @@ import com.nick.daos.ReimbursementDao;
 import com.nick.daos.ReimbursementHibernate;
 import com.nick.exceptions.ReimbursementNotFoundException;
 import com.nick.models.Reimbursement;
+import com.nick.models.ReimbursementStatus;
+import com.nick.models.User;
 
 public class ReimbursementServiceImpl implements ReimbursementService {
 	
@@ -13,20 +15,17 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 
 	@Override
 	public Reimbursement getReimbursementById(int id) throws ReimbursementNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return rd.getReimbursementById(id);
 	}
 
 	@Override
-	public List<Reimbursement> getReimbursementsByEmployeeId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reimbursement> getReimbursementsByEmployeeId(User user) {
+		return rd.getReimbursementsByEmployeeId(user);
 	}
 
 	@Override
-	public List<Reimbursement> getAllReimbursementsByStatus(String status) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reimbursement> getAllReimbursementsByStatus(ReimbursementStatus status) {
+		return rd.getAllReimbursementsByStatus(status);
 	}
 
 	@Override
@@ -43,8 +42,7 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 
 	@Override
 	public List<Reimbursement> getReimbursements() {
-		// TODO Auto-generated method stub
-		return null;
+		return rd.getReimbursements();
 	}
 
 	@Override
@@ -53,9 +51,16 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 	}
 
 	@Override
-	public boolean deleteReimbursement(int id) throws ReimbursementNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException {
+		rd.updateReimbursement(reimbursement);
+		
 	}
+	
+	@Override
+	public void deleteReimbursement(Reimbursement reimbursement) throws ReimbursementNotFoundException {
+		rd.deleteReimbursement(reimbursement);
+	}
+
+	
 	
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nick.models.Reimbursement;
 import com.nick.models.User;
+import com.nick.models.UserRoles;
 import com.nick.services.UserService;
 import com.nick.services.UserServiceImpl;
 
@@ -58,8 +59,9 @@ public class UserDelegate implements Delegatable {
 		
 		InputStream request = rq.getInputStream();
 		
-		User user = new ObjectMapper().readValue(request, User.class);
-		//User user = new User(); // remake this to fit with new constructor (this is just for fake-testing)
+		//User user = new ObjectMapper().readValue(request, User.class);
+		UserRoles newRole = new UserRoles("cook");
+		User user = new User("newguy", "pass", "new", "guy", "newguy@mail.com", newRole); // remake this to fit with new constructor (this is just for fake-testing)
 		try {
 			us.addUser(user);
 			rs.setStatus(201);

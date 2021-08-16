@@ -16,7 +16,7 @@ public class UserRoles {
 	@Column(name="ers_user_role_id")
 	private int id;
 	
-	@Column(name="user_role", nullable = false)
+	@Column(name="user_role", nullable = false, unique = true)
 	private String userRole;
 	
 	

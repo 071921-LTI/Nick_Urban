@@ -16,7 +16,7 @@ public class ReimbursementStatus {
 	@Column(name="reimb_status_id")
 	private int id;
 	
-	@Column(name="reimb_status", nullable = false)
+	@Column(name="reimb_status", nullable = false, unique = true)
 	private String status;
 	
 	

@@ -95,21 +95,34 @@ public class Reimbursement {
 
 
 
-	public Reimbursement(double amount, Timestamp submitDate, User author, ReimbursementStatus status,
+//	public Reimbursement(double amount, Timestamp submitDate, User author, ReimbursementStatus status,
+//			ReimbursementType type) {
+//		super();
+//		this.amount = amount;
+//		this.submitDate = submitDate;
+//		this.author = author;
+//		this.status = status;
+//		this.type = type;
+//	}
+
+	
+	public Reimbursement(double amount, String description, User author, ReimbursementStatus status,
 			ReimbursementType type) {
 		super();
 		this.amount = amount;
-		this.submitDate = submitDate;
+		this.description = description;
 		this.author = author;
 		this.status = status;
 		this.type = type;
 	}
 
 
-
 	public int getId() {
 		return id;
 	}
+
+
+
 
 
 

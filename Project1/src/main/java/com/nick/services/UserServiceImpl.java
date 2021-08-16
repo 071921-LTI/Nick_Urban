@@ -38,16 +38,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean updateUser(User user) throws UserNotFoundException {
+	public void updateUser(User user) throws UserNotFoundException { // change back to boolean? do this for the other Impl's ??
+
 		try { // see if updating a user throws an erroer in UserHibernate, if so return false (this should work?)
-			
+			ud.addUser(user);
+		}catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 	
+	
 	@Override
-	public boolean deleteUser(int id) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+	public void deleteUser(User user) throws UserNotFoundException {
+		ud.deleteUser(user);
+		
 	}
 
 	
