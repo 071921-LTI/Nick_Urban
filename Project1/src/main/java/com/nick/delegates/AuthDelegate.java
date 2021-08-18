@@ -11,6 +11,7 @@ import com.nick.exceptions.UserNotFoundException;
 import com.nick.models.User;
 import com.nick.services.AuthService;
 import com.nick.services.AuthServiceImpl;
+import com.nick.util.CorsFix;
 
 public class AuthDelegate implements Delegatable {
 
@@ -54,6 +55,8 @@ public class AuthDelegate implements Delegatable {
 	@Override
 	public void handlePost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
 		System.out.println("in handlePost in: " + this.getClass());	
+		
+		CorsFix.addCorsHeader(rq.getRequestURI(), rs); // need this here still?
 		
 		String username = rq.getParameter("username");
 		String password = rq.getParameter("password");
