@@ -1,5 +1,7 @@
 package com.nick.driver;
 
+import java.util.List;
+
 import com.nick.exceptions.UserNotFoundException;
 import com.nick.models.Reimbursement;
 import com.nick.models.ReimbursementStatus;
@@ -52,15 +54,19 @@ public class Driver {
 		/*
 		 * adds user(s) to the users table, uses a user-role record 
 		 */
-		UserService us = new UserServiceImpl();
+//		UserService us = new UserServiceImpl();
 //		User u1 = new User("nickdev", "pass", "nick", "urban", "nick@mail.com", ur1);
 //		us.addUser(u1);
 		
-		User nick = us.getUserByUserName("nickdev");
 		
-		System.out.println(nick);
-		
-		System.out.println(nick.getUserRole());
+//		UserRoles ur2 = uRoleService.getUserRoleByRole("manager");
+//		User u2 = new User("theboss", "1234", "Chris", "Cornell", "chris@mail.com", ur2);
+//		us.addUser(u2);
+
+//		UserRoles ur3 = uRoleService.getUserRoleByRole("employee");
+//		UserService us = new UserServiceImpl();
+//		User u3 = new User("robsales", "pass", "rob", "smith", "rob@mail.com", ur3);
+//		us.addUser(u3);
 		
 		/*
 		 * adds reimbursement(s) to the reimbursement table, uses a reimb-type and reimb-status records
@@ -69,7 +75,14 @@ public class Driver {
 //		Reimbursement r1 = new Reimbursement(500.23, "surf and turf dinner", u1, rs1, rt3);
 //		rs.addReimbursement(r1);
 		
+		UserService us = new UserServiceImpl();
+		User user = us.getUserById(1);
+		System.out.println(user);
 		
+		List<Reimbursement> reimbs = null;
+		ReimbursementService rs = new ReimbursementServiceImpl();
+		reimbs = rs.getReimbursementsByEmployeeId(user);
+		System.out.println(reimbs);
 		
 	}
 

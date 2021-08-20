@@ -2,11 +2,12 @@ package com.nick.daos;
 
 import java.util.List;
 
-import javax.persistence.Query;
+//import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.nick.exceptions.UserNotFoundException;
 import com.nick.models.User;
@@ -47,8 +48,12 @@ public class UserHibernate implements UserDao {
 	public List<User> getUsersByRole(String role) {
 		List<User> users = null;
 		try (Session s = HibernateUtil.getSessionFactory().openSession()) {
-			String hql = "FROM User WHERE userRole = :" + role;
-			users = s.createQuery(hql, User.class).list();
+			String hql = "FROM User WHERE userRole = :role";
+			Query<User> query = s.createQuery(hql);
+			query.setParameter("role", role);
+			
+			
+			users = query.list();
 		}
 		
 		return users;

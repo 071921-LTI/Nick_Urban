@@ -22,8 +22,15 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public boolean authorize(String token) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+		String[] stringArr = token.split(":");
+		int id = Integer.parseInt(stringArr[0]);
+		String role = stringArr[1];
+			User user = ud.getUserById(id);
+			if(!user.getUserRole().equals(role)) {
+				return false;
+			} else {
+				return true;
+			}
 	}
 
 }

@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 //import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+//import javax.persistence.criteria.CriteriaBuilder;
+//import javax.persistence.criteria.CriteriaQuery;
+//import javax.persistence.criteria.Predicate;
+//import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -35,9 +35,13 @@ public class ReimbursementHibernate implements ReimbursementDao {
 	public List<Reimbursement> getReimbursementsByEmployeeId(User user) {
 		List<Reimbursement> reimbursements = null;
 		try(Session s = HibernateUtil.getSessionFactory().openSession()){
-			Query q = s.createQuery("FROM Reimbursement WHERE user = :user");
-	        q.setParameter("user", user);
-	        reimbursements = q.list();
+			
+			String hql = "FROM Reimbursement WHERE author = :user";
+			Query<Reimbursement> query = s.createQuery(hql);
+			query.setParameter("user", user);
+			
+			reimbursements = query.list();
+
 		}
 		return reimbursements;
 	}

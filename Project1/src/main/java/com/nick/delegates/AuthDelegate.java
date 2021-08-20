@@ -56,7 +56,7 @@ public class AuthDelegate implements Delegatable {
 	public void handlePost(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
 		System.out.println("in handlePost in: " + this.getClass());	
 		
-		CorsFix.addCorsHeader(rq.getRequestURI(), rs); // need this here still?
+		//CorsFix.addCorsHeader(rq.getRequestURI(), rs); // need this here still?
 		
 		String username = rq.getParameter("username");
 		String password = rq.getParameter("password");
