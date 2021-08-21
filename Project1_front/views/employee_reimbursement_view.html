@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Employee Reimbursement Records</title>
 </head>
-<body>
+<body onload=getReimbursementsJSON()>
 
 
 
@@ -18,7 +18,7 @@
         <th>Date Resolved</th>
         <th>Description</th>
         <th>Requested by</th>
-        <th>Resolved by</th>
+        <!-- <th>Resolved by</th> -->
         <th>Status</th>
         <th>Type</th>
       </tr>
@@ -27,7 +27,6 @@
   <tbody id="emp_table_rows">
 
   </tbody>   
-  
 </table>  
 
 <script src="..\scripts\employee_reimbursement_view.js"></script>

@@ -1,54 +1,57 @@
-window.addEventListener('load', displayReimbursements);
-
-
-
-function displayReimbursements() {
+// window.addEventListener('load', displayReimbursements);
+function displayReimbursements(data) {
 
 
    
     
     
-    let data = getReimbursementsJSON();
-    // data.then((response) => response.json())
-    // .then((reimbs) => {
-    //     console.log(reimbs);
-    // });
-    console.log(data);
-    
-    // for (let i = 0; i < data.length; i++) {
-    //     console.log(data[i]);
-    // }
-    
-    
+   
+    // console.log(data);
+    // console.log(data.id);
 
-
+    
     let tbodyRef = document.getElementById('emp_table').getElementsByTagName('tbody')[0];
     
-    let newRow = tbodyRef.insertRow();
+    for (let i = 0; i < data.length; i++) {
+        
     
-    let c1 = newRow.insertCell();
-    let amount = document.createTextNode('amount');
-    let c2 = newRow.insertCell();
-    let subDate = document.createTextNode('subDate');
-    let c3 = newRow.insertCell();
-    let resDate = document.createTextNode('resDate');
-    let c4 = newRow.insertCell();
-    let desc = document.createTextNode('desc');
-    let c5 = newRow.insertCell();
-    let author = document.createTextNode('author');
-    let c6 = newRow.insertCell();
-    let resolver = document.createTextNode('resolver');
-    let c7 = newRow.insertCell();
-    let status = document.createTextNode('status');
+        
+        let newRow = tbodyRef.insertRow();
+        
+        let c1 = newRow.insertCell();
+        let amount = document.createTextNode(data[i].amount);
+        let c2 = newRow.insertCell();
+        let subDate = document.createTextNode(data[i].submitDate);
+        let c3 = newRow.insertCell();
+        let resDate = document.createTextNode(data[i].resolveDate);
+        let c4 = newRow.insertCell();
+        let desc = document.createTextNode(data[i].description);
+        let c5 = newRow.insertCell();
+        let author = document.createTextNode(data[i].author.userName);
+        //let c6 = newRow.insertCell();
+        //let resolver = document.createTextNode(data[i].);
+        let c7 = newRow.insertCell();
+        let status = document.createTextNode(data[i].status.status);
+        let c8 = newRow.insertCell();
+        let type = document.createTextNode(data[i].type.type);
+        
+        c1.appendChild(amount);
+        c2.appendChild(subDate);
+        c3.appendChild(resDate);
+        c4.appendChild(desc);
+        c5.appendChild(author);
+        // c6.appendChild(resolver);
+        c7.appendChild(status);
+        c8.appendChild(type);
     
     
-    c1.appendChild(amount);
-    c2.appendChild(subDate);
-    c3.appendChild(resDate);
-    c4.appendChild(desc);
-    c5.appendChild(author);
-    c6.appendChild(resolver);
-    c7.appendChild(status);
+    
+    
+    }
+    
+    
+
+
 
 
 }
@@ -83,9 +86,11 @@ async function getReimbursementsJSON() {
         let data = await response.json();
         //let reimbJSON = fetch(data);
         
-        return data;
 
-    
+
+        displayReimbursements(data);
+
+
     }
 
 }

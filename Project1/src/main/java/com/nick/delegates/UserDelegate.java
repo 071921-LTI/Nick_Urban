@@ -56,14 +56,18 @@ public class UserDelegate implements Delegatable {
 		System.out.println("in handleGet in: " + this.getClass());	
 		
 		String pathInfo = rq.getPathInfo();
+		System.out.println(pathInfo);
+//		String pathNext = (String) rq.getAttribute("pathNext"); // maybe change pathNext back to pathInfo ??
+//		System.out.println("PATHNEXT VALUE: " + pathNext);
 
 		/*
 		 * meaning it's not just /users
 		 */
-		if (pathInfo != null) {
+		if (pathInfo != null) { 
 			// convert the id received to an int
-			int id = Integer.parseInt(pathInfo.substring(1));
-			
+			//int id = Integer.parseInt(pathInfo.substring(1)); // old way (that doesn't seem to work)
+			int id = Integer.parseInt(pathInfo.substring(pathInfo.length()-1));
+			System.out.println("ID: " + id);
 			try (PrintWriter pw = rs.getWriter()) {
 				// retrieve the user with the passed-in id
 				User user = us.getUserById(id);
@@ -113,9 +117,9 @@ public class UserDelegate implements Delegatable {
 		
 		InputStream request = rq.getInputStream();
 		
-		//User user = new ObjectMapper().readValue(request, User.class);
-		UserRoles newRole = new UserRoles("cook");
-		User user = new User("newguy", "pass", "new", "guy", "newguy@mail.com", newRole); // remake this to fit with new constructor (this is just for fake-testing)
+		User user = new ObjectMapper().readValue(request, User.class);
+//		UserRoles newRole = new UserRoles("cook");
+//		User user = new User("newguy", "pass", "new", "guy", "newguy@mail.com", newRole); // remake this to fit with new constructor (this is just for fake-testing)
 		try {
 			us.addUser(user);
 			rs.setStatus(201);

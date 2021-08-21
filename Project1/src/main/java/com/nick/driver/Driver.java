@@ -45,7 +45,7 @@ public class Driver {
 //		rTypeService.addReimbursementType(rt3);
 //		rTypeService.addReimbursementType(rt4);
 //		
-//		UserRolesService uRoleService = new UserRolesServiceImpl();
+		UserRolesService uRoleService = new UserRolesServiceImpl();
 //		UserRoles ur1 = new UserRoles("employee");
 //		UserRoles ur2 = new UserRoles("manager");
 //		uRoleService.addUserRole(ur1);
@@ -54,7 +54,7 @@ public class Driver {
 		/*
 		 * adds user(s) to the users table, uses a user-role record 
 		 */
-//		UserService us = new UserServiceImpl();
+		UserService us = new UserServiceImpl();
 //		User u1 = new User("nickdev", "pass", "nick", "urban", "nick@mail.com", ur1);
 //		us.addUser(u1);
 		
@@ -62,6 +62,10 @@ public class Driver {
 //		UserRoles ur2 = uRoleService.getUserRoleByRole("manager");
 //		User u2 = new User("theboss", "1234", "Chris", "Cornell", "chris@mail.com", ur2);
 //		us.addUser(u2);
+		
+		UserRoles ur2 = uRoleService.getUserRoleByRole("manager");
+		User u2 = new User("sub-boss", "1234", "John", "Goodman", "john@mail.com", ur2);
+		us.addUser(u2);
 
 //		UserRoles ur3 = uRoleService.getUserRoleByRole("employee");
 //		UserService us = new UserServiceImpl();
@@ -75,14 +79,14 @@ public class Driver {
 //		Reimbursement r1 = new Reimbursement(500.23, "surf and turf dinner", u1, rs1, rt3);
 //		rs.addReimbursement(r1);
 		
-		UserService us = new UserServiceImpl();
-		User user = us.getUserById(1);
-		System.out.println(user);
-		
-		List<Reimbursement> reimbs = null;
-		ReimbursementService rs = new ReimbursementServiceImpl();
-		reimbs = rs.getReimbursementsByEmployeeId(user);
-		System.out.println(reimbs);
+//		UserService us = new UserServiceImpl();
+//		User user = us.getUserById(1);
+//		System.out.println(user);
+//		
+//		List<Reimbursement> reimbs = null;
+//		ReimbursementService rs = new ReimbursementServiceImpl();
+//		reimbs = rs.getReimbursementsByEmployeeId(user);
+//		System.out.println(reimbs);
 		
 	}
 
