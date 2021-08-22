@@ -28,7 +28,7 @@ function displayEmployeeInfo(data) {
         c4.appendChild(lastName);
         c5.appendChild(email);
 
-    // }
+    
 
 
 
@@ -59,5 +59,6 @@ async function getEmployeeInfoJSON() {
         displayEmployeeInfo(data);
 
     }
-
 }
+
+

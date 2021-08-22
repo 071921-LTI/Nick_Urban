@@ -69,25 +69,40 @@ public class ReimbursementDelegate implements Delegatable {
 		String pathNext = (String) rq.getAttribute("pathNext");
 		System.out.println("PATHNEXT VALUE: " + pathNext);
 		
-		List<Reimbursement> reimbursements = null; 
-		
-		User user = new User();
-		try {
-			user = userS.getUserById(Integer.valueOf(pathNext));
-			System.out.println("USER: " + user);
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (pathNext != null) {
+			
+			
+			
+			List<Reimbursement> reimbursements = null; 
+			
+			User user = new User();
+			try {
+				user = userS.getUserById(Integer.valueOf(pathNext));
+				//System.out.println("USER: " + user);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UserNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			reimbursements = reimS.getReimbursementsByEmployeeId(user);
+			PrintWriter pw = rs.getWriter();
+			pw.write(new ObjectMapper().writeValueAsString(reimbursements));
+			
+		} else if (pathNext == null) {
+			//System.out.println("in else block of reimb delegate handle-get");
+			List<Reimbursement> reimbursements = null;
+			reimbursements = reimS.getReimbursements();
+			PrintWriter pw = rs.getWriter();
+			pw.write(new ObjectMapper().writeValueAsString(reimbursements));
+			
 		}
 		
 		
-		
-		reimbursements = reimS.getReimbursementsByEmployeeId(user);
-		PrintWriter pw = rs.getWriter();
-		pw.write(new ObjectMapper().writeValueAsString(reimbursements));
 		
 		
 		
@@ -95,7 +110,9 @@ public class ReimbursementDelegate implements Delegatable {
 
 	@Override
 	public void handlePut(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-		System.out.println("in handlePut in: " + this.getClass());		
+		System.out.println("in handlePut in: " + this.getClass());	
+		
+		
 	}
 
 	// add new reimbursement

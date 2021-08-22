@@ -81,10 +81,13 @@ public class UserHibernate implements UserDao {
 
 	@Override
 	public void updateUser(User user) throws UserNotFoundException {
+		System.out.println("in user hibernate update user");
+
 		try(Session s = HibernateUtil.getSessionFactory().openSession()){
 			Transaction tx = s.beginTransaction();
 			s.update(user);
 			tx.commit();
+			
 		}		
 	}
 

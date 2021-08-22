@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Reimbursement Requests</title>
+</head>
+<body onload=getPendingReimbursementsJSON()>
+
+
+<h2>Pending Reimbursement requests</h2>
+<h3>Choose to approve or deny these requests</h3>
+
+    <table id="pending_reimb_table">
+      <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Date Submitted</th>
+            <th>Date Resolved</th>
+            <th>Description</th>
+            <th>Requested by</th>
+            <!-- <th>Resolved by</th> -->
+            <th>Status</th>
+            <th>Type</th>
+            <th>ID</th>
+          </tr>
+      </thead>
+
+          <tbody id="pending_reimb_rows">
+
+          </tbody>
+    </table>  
+
+   
+    <h3>Enter request id and choose to approve or deny:</h3>
+    <form>
+      <label for="update_reimb_id">Reimbursement ID</label>
+      <input type="number" name="update_reimb_id" id="update_reimb_id" required><br>
+
+      <label for="update_status"></label><br>
+        <input type="radio" name="update_status" id="approved" value="approved">
+        <label for="approved">Approved</label><br>
+        <input type="radio" name="update_status" id="denied" value="denied">
+        <label for="denied">Denied</label><br>
+        <input type="button" value="Submit Update" id="submit_update">
+
+    </form>
+
+    <script src="..\scripts\manager_reimbursement_manage_view.js"></script>
+
+
+</body>
+</html>

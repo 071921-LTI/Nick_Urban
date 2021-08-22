@@ -108,7 +108,34 @@ public class UserDelegate implements Delegatable {
 
 	@Override
 	public void handlePut(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
-		System.out.println("in handlePut in: " + this.getClass());		
+		System.out.println("in handlePut in: " + this.getClass());	
+		
+		InputStream request = rq.getInputStream();
+		User userNewInfo = new ObjectMapper().readValue(request, User.class);
+		
+		System.out.println(userNewInfo);
+		
+		try {
+			User originalUser = us.getUserById(userNewInfo.getId());
+			//System.out.println(originalUser);
+			
+			userNewInfo.setUserRole(originalUser.getUserRole());
+			
+			// uncomment when ready
+			us.updateUser(userNewInfo);
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+//		try {
+//			us.updateUser(userNewInfo);
+//		} catch (UserNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 	}
 
 	@Override

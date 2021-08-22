@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(User user) throws UserNotFoundException { // change back to boolean? do this for the other Impl's ??
 
 		try { // see if updating a user throws an erroer in UserHibernate, if so return false (this should work?)
-			ud.addUser(user);
+			ud.updateUser(user);
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
