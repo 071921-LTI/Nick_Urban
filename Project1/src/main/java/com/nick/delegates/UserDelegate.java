@@ -113,7 +113,7 @@ public class UserDelegate implements Delegatable {
 		InputStream request = rq.getInputStream();
 		User userNewInfo = new ObjectMapper().readValue(request, User.class);
 		
-		System.out.println(userNewInfo);
+		//System.out.println(userNewInfo);
 		
 		try {
 			User originalUser = us.getUserById(userNewInfo.getId());

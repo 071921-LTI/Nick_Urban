@@ -15,21 +15,6 @@ document.getElementById("submit_update").addEventListener("click", updateUserInf
     let authArr  = authToken.split(":");
     let userId = authArr[0];
     
-    // let appUrl = "http://localhost:8080/Project1/users/" + userId;
-    
-    // let header = new Headers();
-    // header.append('Authorization', authToken);
-    
-    // let response = await fetch(appUrl, {
-    //     headers: {
-    //         'Authorization': header
-    //     }
-    // });
-    
-    // if (response.status >= 200 && response.status < 300) {
-    //     let data = await response.json();
-        
-    // }
     
     let xhr = new XMLHttpRequest();
     xhr.open("PUT", "http://localhost:8080/Project1/users"); // need an extra slash at end?

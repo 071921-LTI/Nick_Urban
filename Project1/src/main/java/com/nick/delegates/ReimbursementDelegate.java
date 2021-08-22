@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nick.exceptions.ReimbursementNotFoundException;
 import com.nick.exceptions.UserNotFoundException;
 import com.nick.models.Reimbursement;
 import com.nick.models.ReimbursementStatus;
@@ -112,6 +113,62 @@ public class ReimbursementDelegate implements Delegatable {
 	public void handlePut(HttpServletRequest rq, HttpServletResponse rs) throws ServletException, IOException {
 		System.out.println("in handlePut in: " + this.getClass());	
 		
+		String token = rq.getHeader("Authorization");
+		//System.out.println("TOKEN: " + token);
+		//System.out.println("ID STRING FROM TOKEN: " +token.charAt(0));
+		char idChar =  token.charAt(0);
+		
+		int idFromToken = Integer.parseInt(String.valueOf(idChar));
+		//System.out.println(idFromToken);
+		
+		
+		User resolver = null;
+		try {
+			resolver = userS.getUserById(idFromToken);
+		} catch (UserNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//System.out.println("RESOLVER RETRIEVED: " + resolver);
+		
+		
+		InputStream request = rq.getInputStream();
+		
+		Reimbursement reimbNewStatus = new ObjectMapper().readValue(request, Reimbursement.class);
+		
+		//System.out.println("UDATED REIMB INFO: " + reimbNewStatus);
+		
+		try {
+			
+			// update resolve date
+			// update manager resolver name
+			// update status
+			
+			Reimbursement originalReimbursement = reimS.getReimbursementById(reimbNewStatus.getId());
+			//System.out.println("TARGET REIMB: " + originalReimbursement);
+			
+			Date rawDate = new Date();
+			Timestamp reimbResolveDate = new Timestamp(rawDate.getTime());
+			
+			ReimbursementStatus extractedStatus = reimbNewStatus.getStatus();
+			String newStatusString = extractedStatus.getStatus();
+			ReimbursementStatus newStatus = reimStatS.getReimbursementStatusByStatus(newStatusString);
+			//System.out.println("NEW STATUS: " + newStatus);
+			//ReimbursementStatus updatedStatus = reimStatS.getReimbursementStatusByStatus();
+			
+			originalReimbursement.setResolveDate(reimbResolveDate);
+			originalReimbursement.setResolver(resolver);
+			originalReimbursement.setStatus(newStatus);
+			
+			System.out.println(originalReimbursement);
+			
+			reimS.updateReimbursement(originalReimbursement);
+			
+		} catch (ReimbursementNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

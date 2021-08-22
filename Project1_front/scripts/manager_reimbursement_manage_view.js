@@ -106,6 +106,12 @@ function submitUpdate() {
     let udateStatus = document.querySelector('input[name=update_status]:checked').value;
 
 
+    let authToken = sessionStorage.getItem("token");
+    
+    let authArr  = authToken.split(":");
+    let resolverId = authArr[0]; // need to find a way to send the resolver information...
+
+
     let xhr = new XMLHttpRequest();
     xhr.open("PUT", "http://localhost:8080/Project1/reimburse");
 
@@ -120,7 +126,8 @@ function submitUpdate() {
 
     // uncomment this when ready
     //
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.setRequestHeader("Authorization", authToken);
-    // xhr.send(JSON.stringify(reimbursement));
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", authToken);
+    xhr.send(JSON.stringify(reimbursement));
 }
+
