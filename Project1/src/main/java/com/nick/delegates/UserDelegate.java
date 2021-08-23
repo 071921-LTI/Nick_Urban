@@ -60,10 +60,42 @@ public class UserDelegate implements Delegatable {
 //		String pathNext = (String) rq.getAttribute("pathNext"); // maybe change pathNext back to pathInfo ??
 //		System.out.println("PATHNEXT VALUE: " + pathNext);
 
-		/*
-		 * meaning it's not just /users
-		 */
-		if (pathInfo != null) { 
+		
+		
+		
+		
+		
+		if (pathInfo.equals("/users")) {
+			System.out.println("in the /users if block now to get ALL employees");
+			// "protecting" an endpoint with authorization logic, making sure that a user is authenticated before proceeding further.
+			//String authToken = rq.getHeader("Authorization");
+			try {
+//				if(authToken == null || !as.authorize(authToken)) {
+//					rs.sendError(403);
+//				}else {
+					/*
+					 * for /users endpoint, returning all users
+					 */
+					System.out.println("in area where user list will be created");
+					List<User> users = us.getUsers();
+					try (PrintWriter pw = rs.getWriter()) {
+						pw.write(new ObjectMapper().writeValueAsString(users));
+//					}
+				}
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			//} catch (UserNotFoundException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		// can change this back to just if block
+		else if (pathInfo != null) { 
+			System.out.println("in the user id included if-block");
 			// convert the id received to an int
 			//int id = Integer.parseInt(pathInfo.substring(1)); // old way (that doesn't seem to work)
 			int id = Integer.parseInt(pathInfo.substring(pathInfo.length()-1));
@@ -78,32 +110,8 @@ public class UserDelegate implements Delegatable {
 				// if no user with that id is found, return a 404
 				rs.sendError(404);
 			}
-		} else {
-			// "protecting" an endpoint with authorization logic, making sure that a user is authenticated before proceeding further.
-			String authToken = rq.getHeader("Authorization");
-			try {
-				if(authToken == null || !as.authorize(authToken)) {
-					rs.sendError(403);
-				}else {
-					/*
-					 * for /users endpoint, returning all users
-					 */
-					List<User> users = us.getUsers();
-					try (PrintWriter pw = rs.getWriter()) {
-						pw.write(new ObjectMapper().writeValueAsString(users));
-					}
-				}
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UserNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		//} // added to experiment
+		} 
 	}
 
 	@Override
