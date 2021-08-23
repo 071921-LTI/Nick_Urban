@@ -17,6 +17,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>ID</th>
             </tr>
         </thead>
         <tbody id="emp_info_table_rows">
@@ -24,8 +25,34 @@
         </tbody >
     </table>
 
+    <h3>View one employees reimbursement requests</h3>
+    <form>
+        <label for="emp_id">Emp. ID number:</label>
+        <input type="number" name="emp_id" id="emp_id">
+
+        <input type="button" value="View Employees Reimbursements" id="view_reimbursements">
+    </form>
 
 
+    <h3>employees past reimbursement requests</h3>
+<table id="emp_table">
+  <thead>
+    <tr>
+        <th>Amount</th>
+        <th>Date Submitted</th>
+        <th>Date Resolved</th>
+        <th>Description</th>
+        <th>Requested by</th>
+        <th>Resolved by</th>
+        <th>Status</th>
+        <th>Type</th>
+      </tr>
+  </thead>
+
+  <tbody id="emp_table_rows">
+
+  </tbody>   
+</table>  
 
 
 
