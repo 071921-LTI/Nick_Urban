@@ -3,7 +3,13 @@ function displayEmployeeInfo(data) {
     //console.log(data);
 
     let tbodyRef = document.getElementById('emp_info_table').getElementsByTagName('tbody')[0];
-    // let tbodyRef = document.getElementById('emp_info_table_rows').getElementsByTagName('tbody');
+    
+    
+
+
+
+
+
     for (let i = 0; i < data.length; i++) {
         //console.log(data[i]);
 
@@ -88,6 +94,17 @@ function displayReimbursements(data) {
 
     
     let tbodyRef = document.getElementById('emp_table').getElementsByTagName('tbody')[0];
+
+
+    // experimenting
+    //let Parent = document.getElementById('emp_table').getElementsByTagName('tbody')[0];
+    while(tbodyRef.hasChildNodes())
+    {
+        tbodyRef.removeChild(tbodyRef.firstChild);
+    }
+    //
+
+
     
     let userId = document.getElementById('emp_id').value;
 
