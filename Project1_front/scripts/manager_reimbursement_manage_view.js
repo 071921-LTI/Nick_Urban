@@ -16,6 +16,15 @@ function displayReimbursements(data) {
 
         if (data[i].status.status === "pending") {
 
+            let resolverField;
+        
+            if(data[i].resolver === null) {
+                resolverField = "none";
+            } else {
+                resolverField = data[i].resolver.userName;
+            }
+            
+
             let newRow = tbodyRef.insertRow();
             
             let c1 = newRow.insertCell();
@@ -28,8 +37,8 @@ function displayReimbursements(data) {
             let desc = document.createTextNode(data[i].description);
             let c5 = newRow.insertCell();
             let author = document.createTextNode(data[i].author.userName);
-            //let c6 = newRow.insertCell();
-            //let resolver = document.createTextNode(data[i].);
+            let c6 = newRow.insertCell();
+            let resolver = document.createTextNode(resolverField);
             let c7 = newRow.insertCell();
             let status = document.createTextNode(data[i].status.status);
             let c8 = newRow.insertCell();
@@ -42,7 +51,7 @@ function displayReimbursements(data) {
             c3.appendChild(resDate);
             c4.appendChild(desc);
             c5.appendChild(author);
-            // c6.appendChild(resolver);
+            c6.appendChild(resolver);
             c7.appendChild(status);
             c8.appendChild(type);
             c9.appendChild(reimbId);
